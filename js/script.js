@@ -11,3 +11,4 @@ async function loadData() {
 }
 const data = await loadData();
 console.log(data); // gibt die Daten der API oder false in der Konsole aus
+

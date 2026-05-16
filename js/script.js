@@ -1,6 +1,6 @@
 // Zugriff auf Color RGB API
 async function loadData() {
-    const url = 'https://www.thecolorapi.com/id?rgb=rgb(255,152,216)'; // mit korrekter API-URL ersetzen
+    const url = 'https://www.thecolorapi.com/id?rgb=rgb(204,122,173)'; // mit korrekter API-URL ersetzen
     try {
         const response = await fetch(url);
         return await response.json();

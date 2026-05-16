@@ -2,10 +2,296 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Noto Sans', sans-serif;
 }
-
 
 body {
-    background-color: pink;
+    background-color: #000;
+    color: white;
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
+/* Weltraum Hintergrund */
+.stars-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/AdobeStock_1603728692.jpeg'); 
+    background-color: #050505;
+    z-index: -1;
+}
+
+/* Container rund um alle Farbinhalte */
+.container {
+    max-width: 70%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header & Logo */
+.main-header {
+    text-align: center;
+    padding: 40px 0;
+}
+
+.logo {
+    width: 20rem;
+    margin: 0 auto 20px auto;
+    display: block;
+}
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px; 
+    padding: 20px;
+}
+
+.search-bar {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 40px; 
+    width: 350px;     
+    height: 60px;   
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 5px 5px 10px; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); 
+}
+
+/* Textfeld im linken Button */
+.search-bar input {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 500;
+    outline: none;
+    width: 70%;
+}
+
+/* Farbbalken im rechten Button */
+.pink-pill {
+    background: #ff98d8;
+    height: 100%;     
+    width: 80%;  
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+/* Button-Kreis für Lupe */
+.search-btn {
+    background-color: black;
+    border: none;
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0; 
+}
+
+/* Lupen-Icon selbst */
+.search-btn img {
+    width: 2.2rem;
+    height: 2.2rem;
+    filter: invert(1); 
+}
+
+/* Farbe im Farbpicker */
+.pink-glow {
+    background: #ff98d8;
+}
+
+/* Glassmorphism Panel */
+.glass-panel {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+    margin-bottom: 7%;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.hero-content h1 { font-size: 3rem; }
+.hero-content h3 { color: #ccc; margin-bottom: 15px; }
+.hero-content p { line-height: 1.6; font-size: 0.9rem; color: #eee; }
+
+.color-preview {
+    flex-shrink: 0;
+    width: 350px;
+    height: 200px;
+    background-color: #FF98D8;
+    border-radius: 15px;
+}
+
+/* Codes Grid */
+.codes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3%;
+    margin-bottom: 7%;
+}
+
+
+/* Karten-Header */
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;           
+    margin-bottom: 20px; 
+}
+
+/* Schwarzer Kreis für das obere Deko-Icon */
+.header-icon-circle {
+    background-color: #000000;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Deko-Icon im Kreis weiss färben und anpassen */
+.header-icon-circle img {
+    width: 3rem;
+    height: 3rem;
+    filter: invert(1);
+}
+
+/* Label auf den Karten */
+.card-header label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+}
+
+/* Etwas mehr Innenabstand für die Karte */
+.code-card {
+    padding: 20px; 
+}
+
+.input-field {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2); 
+    border-radius: 40px; 
+    padding: 5px 5px 5px 20px; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    font-size: 1.1rem; 
+    height: 50px; 
+    margin-top: 0; 
+}
+
+/* Copy-Button Gehäuse */
+.copy-btn {
+    background-color: #000000;
+    border: none;
+    border-radius: 50%;
+    width: 40px;  
+    height: 40px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    flex-shrink: 0; 
+}
+
+
+/* WICHTIG: Das Copy-Icon herunterskalieren, sonst bricht es aus dem Kreis aus! */
+.copy-btn img {
+    width: 3rem; 
+    height: 3rem; 
+    filter: invert(1); 
+}
+
+/* Variants */
+.variants h4 { 
+    margin-bottom: 20px; 
+}
+
+/* Dein originales 6er-Raster bleibt exakt so, wie es ist */
+.variants-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 3%;
+}
+
+/* 1. Die Farbkachel selbst: Höher und runder gemacht für den neuen Look */
+.swatch {
+    height: 110px;         
+    border-radius: 20px;   
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Text-Hintergrund in der Farbbox */
+.pill-label {
+    background-color: rgba(0, 0, 0, 0.25); 
+    color: white;
+    font-size: 0.85rem;
+    font-weight: bold;
+    padding: 8px 18px;       
+    border-radius: 30px;             
+    backdrop-filter: blur(5px);         
+    border: 1px solid rgba(255, 255, 255, 0.1); 
+    display: inline-block;
+}
+
+/* Spezialfall für die "Kontrast"-Kachel (Dunkler Text auf hellem Grün liest sich besser) */
+.swatch.contrast .pill-label {
+    background-color: rgba(255, 255, 255, 0.4);
+    color: #111;
+}
+
+/* 3. Das Code-Feld unter der Kachel (deine Klasse aus dem HTML) */
+.variant-code-field {
+    background: rgba(255, 255, 255, 0.12) !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    height: 42px;                    
+    padding: 5px 5px 5px 12px;
+    border-radius: 30px;
+}
+
+.variant-code-field span {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: white;
+}
+
+/* Die runden Copy-Buttons in den kleinen Feldern herunterskalieren */
+.variant-code-field .copy-btn {
+    width: 32px;
+    height: 32px;
+}
+
+.variant-code-field .copy-btn img {
+    width: 3rem;
+    height: 3rem;
+}
+
+/* Farben der Swatches (bleiben wie gehabt) */
+.current { background-color: #FF98D8; }
+.darker { background-color: #CC7AAD; }
+.lighter { background-color: #FFB2E2; }
+.desaturated { background-color: #FFCCEB; }
+.saturated { background-color: #FF66C4; }
+.contrast { background-color: #98FFC1; }

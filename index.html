@@ -3,22 +3,230 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cocktail API</title>
+    <title>Hueniverse - Rosa</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header>
-        <h1>Vorlage für interaktive Medien II – jetzt tuts!</h1>
+    <div class="stars-background"></div>
 
+    <header class="main-header">
+        <div class="logo">
+            <img src="img/Logo_Hueniverse.svg" alt="Hueniverse Logo">
+        </div>
+        <div class="search-container">
+            <div class="search-bar">
+                <input type="text" value="#FF98D8" readonly>
+                <button class="search-btn">
+                    <img src="img/Lupe_Icon.svg" alt="Lupe Icon">
+                </button>
+            </div>
+
+            <div class="search-bar usage-bar">
+                <div class="pink-pill"></div>
+                <button class="search-btn">
+                    <img src="img/Lupe_Icon.svg" alt="Lupe Icon">
+                </button>
+            </div>
+        </div>
     </header>
-    <main>
-        <h2>Main Content</h2>
-        <p>This is the main content of the page.</p>
 
+    <main class="container">
+        <section class="glass-panel hero">
+            <div class="hero-content">
+                <h1>Rosa</h1>
+                <h3>Zart – Verspielt – Romantisch</h3>
+                <p>Rosa wirkt leuchtend und zugleich weich, mit einer spielerischen, fast schwerelosen Ausstrahlung. Sie erinnert an süsse Leichtigkeit und unbeschwerte Momente voller Geborgenheit. In ihrer Wirkung verbindet sie Frische mit einer sanften, romantischen Note.</p>
+            </div>
+            <div class="color-preview"></div>
+        </section>
+        
+
+        <section class="codes-grid">
+            <div class="glass-panel code-card">
+                <div class="card-header">
+                    <div class="header-icon-circle">
+                        <img src="img/HEX_Icon.svg" alt="HEX-Icon">
+                    </div>
+                    <label>HEX</label>
+                </div>
+                
+                <div class="input-field">
+                    <span>#FF98D8</span>
+                    <button class="copy-btn" title="Kopieren">
+                        <img src="img/Copy_Icon.svg" alt="Kopieren">
+                    </button>
+                </div>
+            </div>
+
+            <div class="glass-panel code-card">
+                <div class="card-header">
+                    <div class="header-icon-circle">
+                        <img src="img/RGB_Icon.svg" alt="RGB-Icon">
+                    </div>
+                    <label>RGB</label>
+                </div>
+                
+                <div class="input-field">
+                    <span>R255 G152 B216</span>
+                    <button class="copy-btn" title="Kopieren">
+                        <img src="img/Copy_Icon.svg" alt="Kopieren">
+                    </button>
+                </div>
+            </div>
+
+            <div class="glass-panel code-card">
+                <div class="card-header">
+                    <div class="header-icon-circle">
+                        <img src="img/CMYK_Icon.svg" alt="CMYK-Icon">
+                    </div>
+                    <label>CMYK</label>
+                </div>
+                
+                <div class="input-field">
+                    <span>C0 M40 Y15 K0</span>
+                    <button class="copy-btn" title="Kopieren">
+                        <img src="img/Copy_Icon.svg" alt="Kopieren">
+                    </button>
+                </div>
+            </div>
+
+            <div class="glass-panel code-card">
+                <div class="card-header">
+                    <div class="header-icon-circle">
+                        <img src="img/HSL_Icon.svg" alt="HSL-Icon">
+                    </div>
+                    <label>HSL</label>
+                </div>
+                
+                <div class="input-field">
+                    <span>H323 S100 L80</span>
+                    <button class="copy-btn" title="Kopieren">
+                        <img src="img/Copy_Icon.svg" alt="Kopieren">
+                    </button>
+                </div>
+            </div>
+
+            <div class="glass-panel code-card">
+                <div class="card-header">
+                    <div class="header-icon-circle">
+                        <img src="img/HSV_Icon.svg" alt="HSV-Icon">
+                    </div>
+                    <label>HSV</label>
+                </div>
+                
+                <div class="input-field">
+                    <span>H323 S40 V100</span>
+                    <button class="copy-btn" title="Kopieren">
+                        <img src="img/Copy_Icon.svg" alt="Kopieren">
+                    </button>
+                </div>
+            </div>
+            
+            <div class="glass-panel code-card">
+                <div class="card-header">
+                    <div class="header-icon-circle">
+                        <img src="img/XYZ_Icon.svg" alt="XYZ-Icon">
+                    </div>
+                    <label>XYZ</label>
+                </div>
+                
+                <div class="input-field">
+                    <span>X78 Y70 Z90</span>
+                    <button class="copy-btn" title="Kopieren">
+                        <img src="img/Copy_Icon.svg" alt="Kopieren">
+                    </button>
+                </div>
+            </div>
+            
+        </section>
+
+
+
+        <section class="glass-panel variants">
+            <h4>Farbvarianten</h4>
+            <div class="variants-grid">
+                
+                <div class="variant-item">
+                    <div class="swatch current">
+                        <span class="pill-label">Aktuell</span>
+                    </div>
+                    <div class="input-field variant-code-field">
+                        <span>#FF98D8</span>
+                        <button class="copy-btn" title="Kopieren">
+                            <img src="img/Copy_Icon.svg" alt="Kopieren">
+                        </button>
+                    </div>
+                </div>
+
+                <div class="variant-item">
+                    <div class="swatch darker">
+                        <span class="pill-label">Dunkler</span>
+                    </div>
+                    <div class="input-field variant-code-field">
+                        <span>#CC7AAD</span>
+                        <button class="copy-btn" title="Kopieren">
+                            <img src="img/Copy_Icon.svg" alt="Kopieren">
+                        </button>
+                    </div>
+                </div>
+
+                <div class="variant-item">
+                    <div class="swatch lighter">
+                        <span class="pill-label">Heller</span>
+                    </div>
+                    <div class="input-field variant-code-field">
+                        <span>#FFB2E2</span>
+                        <button class="copy-btn" title="Kopieren">
+                            <img src="img/Copy_Icon.svg" alt="Kopieren">
+                        </button>
+                    </div>
+                </div>
+
+                <div class="variant-item">
+                    <div class="swatch desaturated">
+                        <span class="pill-label">Entsättigt</span>
+                    </div>
+                    <div class="input-field variant-code-field">
+                        <span>#FFCCEB</span>
+                        <button class="copy-btn" title="Kopieren">
+                            <img src="img/Copy_Icon.svg" alt="Kopieren">
+                        </button>
+                    </div>
+                </div>
+
+                <div class="variant-item">
+                    <div class="swatch saturated">
+                        <span class="pill-label">Satter</span>
+                    </div>
+                    <div class="input-field variant-code-field">
+                        <span>#FF66C4</span>
+                        <button class="copy-btn" title="Kopieren">
+                            <img src="img/Copy_Icon.svg" alt="Kopieren">
+                        </button>
+                    </div>
+                </div>
+
+                <div class="variant-item">
+                    <div class="swatch contrast">
+                        <span class="pill-label">Kontrast</span>
+                    </div>
+                    <div class="input-field variant-code-field">
+                        <span>#98FFC1</span>
+                        <button class="copy-btn" title="Kopieren">
+                            <img src="img/Copy_Icon.svg" alt="Kopieren">
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
     </main>
-    <footer>
-        <p>This is the footer of the page.</p>
-    </footer>
+
     <script src="js/script.js" type="module"></script>
 </body>
 </html>

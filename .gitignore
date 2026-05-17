@@ -3,3 +3,4 @@ config.php
 .vscode
 .env
 node_modules
+api/color-text.php

@@ -9,11 +9,13 @@ async function loadData() {
         return false;
     }
 }
-const data = await loadData();
-console.log(data); // gibt die Daten der API oder false in der Konsole aus
+//const data = await loadData();
+//console.log(data); // gibt die Daten der API oder false in der Konsole aus
 //console.log(data.cmyk.value);
 
-
+loadData().then(data => {
+    console.log(data);
+});
 
 // 2. OpenAI-Abruf (PHP Backend)
 async function loadAIColorText(colorName) {
@@ -40,5 +42,49 @@ async function loadAIColorText(colorName) {
     } catch (error) {
         console.error("Fetch Fehler:", error);
         return false;
+    }
+}
+
+// Color Picker
+const pickr = Pickr.create({
+    el: '#pickr-btn',
+    theme: 'classic',
+    default: '#000000',
+    components: {
+        preview: true,
+        opacity: false,
+        hue: true,
+        interaction: {
+            hex: true,
+            rgb: true,
+            input: true,
+            save: true
+        }
+    }
+});
+
+
+let selectedHex = null;
+
+document.querySelector('.color-picker').addEventListener('click', () => {
+    pickr.show();
+});
+
+pickr.on('change', (color) => {
+    selectedHex = color.toHEXA().toString().replace('#', '');
+    document.querySelector('.color-picker').style.backgroundColor = '#' + selectedHex;
+    document.getElementById('hex-input').value = '#' + selectedHex;
+});
+
+function searchColor() {
+    if (selectedHex) {
+        window.location.href = `farbe.html?hex=${selectedHex}`;
+    }
+}
+
+function searchHex() {
+    let hex = document.getElementById('hex-input').value.replace('#', '');
+    if (hex) {
+        window.location.href = `farbe.html?hex=${hex}`;
     }
 }

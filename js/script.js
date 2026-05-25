@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Feld Farbpicker -> Leitet den Nutzer bei Farbauswahl auf die Detailseite weiter
 function searchColor() {
     if (selectedHex) {
-        window.location.href = `colors.html?hex=${selectedHex}`;
+        navigateWithLoadingScreen(selectedHex);
     }
 }
 
@@ -53,8 +53,17 @@ function searchColor() {
 function searchHex() {
     let hex = document.getElementById('hex-input').value.replace('#', '');
     if (hex) {
-        window.location.href = `colors.html?hex=${hex}`;
+        navigateWithLoadingScreen(hex);
     }
+}
+
+// Hilfsfunktion für Navigation mit Loadingscreen
+function navigateWithLoadingScreen(hex) {
+    // 1. Navigiere zum Loadingscreen
+    window.location.href = 'loadingscreen.html';
+    
+    // 2. Speichere den hex-Wert im sessionStorage für später
+    sessionStorage.setItem('pendingHex', hex);
 }
 
 function hslToHex(hslString) {
@@ -286,5 +295,54 @@ async function loadAIColorText(colorName) {
     } catch (error) {
         console.error("Fetch Fehler:", error);
         return false;
+    }
+}
+
+// Loadingscreen-Logik
+// Prüfe, ob ein hex-Wert im sessionStorage vorhanden ist
+const pendingHex = sessionStorage.getItem('pendingHex');
+
+if (pendingHex) {
+    // Starte den Datenfetch im Hintergrund
+    // (Dies ist optional - die colors.html wird die Daten ohnehin fetchen)
+    
+    // Nach 2 Sekunden navigiere zur colors.html
+    setTimeout(() => {
+        window.location.href = `colors.html?hex=${pendingHex}`;
+        sessionStorage.removeItem('pendingHex'); // Cleanup
+    }, 3000);
+} else if (window.location.pathname.includes('loadingscreen.html')) {
+    // Falls kein hex vorhanden, gehe zurück zur Startseite
+    setTimeout(() => {
+        window.location.href = 'index.html';
+    }, 3000);
+}
+
+
+async function copyToClipboard(elementId, button) {
+    const textToCopy = document.getElementById(elementId).textContent;
+    
+    try {
+        await navigator.clipboard.writeText(textToCopy);
+        
+        // Button-Styling: weiß Hintergrund, schwarzes Icon
+        if (button) {
+            button.style.backgroundColor = '#ffffff';
+            const icon = button.querySelector('img');
+            if (icon) {
+                icon.style.filter = 'brightness(0)';
+            }
+            
+            // Nach 1 Sekunde zurücksetzen
+            setTimeout(() => {
+                button.style.backgroundColor = '';
+                if (icon) {
+                    icon.style.filter = '';
+                }
+            }, 1000);
+        }
+        
+    } catch (err) {
+        console.error('Fehler beim Kopieren: ', err);
     }
 }

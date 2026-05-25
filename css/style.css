@@ -55,6 +55,17 @@ body {
     overflow: hidden; 
 }
 
+div.pickr .pcr-button {
+    visibility: hidden;
+}
+
+
+div.pcr-app.visible{
+    width: 350px;
+    padding: 30px;
+    border-radius: 40px;
+}
+
 .search-container {
     display: flex;
     justify-content: center;
@@ -351,7 +362,18 @@ body.page-home {
 }
 
 #color-label {
-    display: none;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 500;
+    pointer-events: none;
+    transition: opacity 0.3s;
+    white-space: nowrap;
+    z-index: 10;
+    background: none;
 }
 
 /* Loading Screen */

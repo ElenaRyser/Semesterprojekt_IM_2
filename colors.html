@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hueniverse - Rosa</title>
+    <title>Hueniverse</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,18 +16,20 @@
 
     <header class="main-header">
         <div class="logo">
-            <img src="img/Logo_Hueniverse.svg" alt="Hueniverse Logo">
+            <a href="index.html">
+                <img src="img/Logo_Hueniverse.svg" alt="Hueniverse Logo">
+            </a>
         </div>
         <div class="search-container">
             <div class="search-bar">
-                <input type="text" value="#FF98D8" readonly>
+                <input type="text" value="#" readonly>
                 <button class="search-btn">
                     <img src="img/Lupe_Icon.svg" alt="Lupe Icon">
                 </button>
             </div>
 
             <div class="search-bar usage-bar">
-                <div class="pink-pill"></div>
+                <div class="color-pill"></div>
                 <button class="search-btn">
                     <img src="img/Lupe_Icon.svg" alt="Lupe Icon">
                 </button>
@@ -38,9 +40,9 @@
     <main class="container">
         <section class="glass-panel hero">
             <div class="hero-content">
-                <h1>Rosa</h1>
-                <h3>Zart – Verspielt – Romantisch</h3>
-                <p>Rosa wirkt leuchtend und zugleich weich, mit einer spielerischen, fast schwerelosen Ausstrahlung. Sie erinnert an süsse Leichtigkeit und unbeschwerte Momente voller Geborgenheit. In ihrer Wirkung verbindet sie Frische mit einer sanften, romantischen Note.</p>
+                <h1 id="colorName">Farbe</h1>
+                <h3>Drei Schlagworte</h3>
+                <p>Farbbeschreibung</p>
             </div>
             <div class="color-preview"></div>
         </section>
@@ -56,7 +58,7 @@
                 </div>
                 
                 <div class="input-field">
-                    <span>#FF98D8</span>
+                    <span>#</span>
                     <button class="copy-btn" title="Kopieren">
                         <img src="img/Copy_Icon.svg" alt="Kopieren">
                     </button>
@@ -72,7 +74,7 @@
                 </div>
                 
                 <div class="input-field">
-                    <span>R255 G152 B216</span>
+                    <span>R G B</span>
                     <button class="copy-btn" title="Kopieren">
                         <img src="img/Copy_Icon.svg" alt="Kopieren">
                     </button>
@@ -88,7 +90,7 @@
                 </div>
                 
                 <div class="input-field">
-                    <span>C0 M40 Y15 K0</span>
+                    <span>C M Y K</span>
                     <button class="copy-btn" title="Kopieren">
                         <img src="img/Copy_Icon.svg" alt="Kopieren">
                     </button>
@@ -104,7 +106,7 @@
                 </div>
                 
                 <div class="input-field">
-                    <span>H323 S100 L80</span>
+                    <span>H S L</span>
                     <button class="copy-btn" title="Kopieren">
                         <img src="img/Copy_Icon.svg" alt="Kopieren">
                     </button>
@@ -120,7 +122,7 @@
                 </div>
                 
                 <div class="input-field">
-                    <span>H323 S40 V100</span>
+                    <span>H S V</span>
                     <button class="copy-btn" title="Kopieren">
                         <img src="img/Copy_Icon.svg" alt="Kopieren">
                     </button>
@@ -136,7 +138,7 @@
                 </div>
                 
                 <div class="input-field">
-                    <span>X78 Y70 Z90</span>
+                    <span>X Y Z</span>
                     <button class="copy-btn" title="Kopieren">
                         <img src="img/Copy_Icon.svg" alt="Kopieren">
                     </button>
@@ -152,11 +154,11 @@
             <div class="variants-grid">
                 
                 <div class="variant-item">
-                    <div class="swatch current">
+                    <div class="swatch current" id="colorPreviewCurrent">
                         <span class="pill-label">Aktuell</span>
                     </div>
                     <div class="input-field variant-code-field">
-                        <span>#FF98D8</span>
+                        <span id="colorHexCurrent">#</span>
                         <button class="copy-btn" title="Kopieren">
                             <img src="img/Copy_Icon.svg" alt="Kopieren">
                         </button>
@@ -164,11 +166,11 @@
                 </div>
 
                 <div class="variant-item">
-                    <div class="swatch darker">
+                    <div class="swatch darker" id="colorPreviewDarker">
                         <span class="pill-label">Dunkler</span>
                     </div>
                     <div class="input-field variant-code-field">
-                        <span>#CC7AAD</span>
+                        <span id="colorHexDarker">#</span>
                         <button class="copy-btn" title="Kopieren">
                             <img src="img/Copy_Icon.svg" alt="Kopieren">
                         </button>
@@ -176,11 +178,11 @@
                 </div>
 
                 <div class="variant-item">
-                    <div class="swatch lighter">
+                    <div class="swatch lighter" id="colorPreviewBrighter">
                         <span class="pill-label">Heller</span>
                     </div>
                     <div class="input-field variant-code-field">
-                        <span>#FFB2E2</span>
+                        <span id="colorHexBrighter">#</span>
                         <button class="copy-btn" title="Kopieren">
                             <img src="img/Copy_Icon.svg" alt="Kopieren">
                         </button>
@@ -188,11 +190,11 @@
                 </div>
 
                 <div class="variant-item">
-                    <div class="swatch desaturated">
+                    <div class="swatch desaturated" id="colorPreviewDesaturated">
                         <span class="pill-label">Entsättigt</span>
                     </div>
                     <div class="input-field variant-code-field">
-                        <span>#FFCCEB</span>
+                        <span id="colorHexDesaturated">#</span>
                         <button class="copy-btn" title="Kopieren">
                             <img src="img/Copy_Icon.svg" alt="Kopieren">
                         </button>
@@ -200,11 +202,11 @@
                 </div>
 
                 <div class="variant-item">
-                    <div class="swatch saturated">
+                    <div class="swatch saturated" id="colorPreviewSaturated">
                         <span class="pill-label">Satter</span>
                     </div>
                     <div class="input-field variant-code-field">
-                        <span>#FF66C4</span>
+                        <span id="colorHexSaturated">#</span>
                         <button class="copy-btn" title="Kopieren">
                             <img src="img/Copy_Icon.svg" alt="Kopieren">
                         </button>
@@ -212,11 +214,11 @@
                 </div>
 
                 <div class="variant-item">
-                    <div class="swatch contrast">
+                    <div class="swatch contrast" id="colorPreviewContrast">
                         <span class="pill-label">Kontrast</span>
                     </div>
                     <div class="input-field variant-code-field">
-                        <span>#98FFC1</span>
+                        <span id="colorHexContrast">#</span>
                         <button class="copy-btn" title="Kopieren">
                             <img src="img/Copy_Icon.svg" alt="Kopieren">
                         </button>

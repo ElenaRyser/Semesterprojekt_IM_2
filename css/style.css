@@ -107,8 +107,8 @@ body {
 }
 
 /* Farbbalken im rechten Button */
-.pink-pill {
-    background: #ff98d8;
+.color-pill {
+    background: #000000;
     height: 100%;     
     width: 80%;  
     border-radius: 30px;
@@ -166,7 +166,7 @@ body {
     flex-shrink: 0;
     width: 350px;
     height: 200px;
-    background-color: #FF98D8;
+    background-color: #000000;
     border-radius: 15px;
 }
 

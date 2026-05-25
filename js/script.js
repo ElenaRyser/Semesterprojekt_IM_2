@@ -45,7 +45,9 @@ async function loadAIColorText(colorName) {
     }
 }
 
-// Color Picker
+
+
+// Color Picker auf der Startseite
 const pickr = Pickr.create({
     el: '#pickr-btn',
     theme: 'classic',
@@ -63,28 +65,31 @@ const pickr = Pickr.create({
     }
 });
 
-
 let selectedHex = null;
 
+// Öffnet den Farbwähler, wenn der Nutzer auf das Container-Element klickt
 document.querySelector('.color-picker').addEventListener('click', () => {
     pickr.show();
 });
 
+// Reagiert, wenn der Nutzer eine Farbe im Picker ändert
 pickr.on('change', (color) => {
     selectedHex = color.toHEXA().toString().replace('#', '');
     document.querySelector('.color-picker').style.backgroundColor = '#' + selectedHex;
     document.getElementById('hex-input').value = '#' + selectedHex;
 });
 
+// Feld Farbpicker – Leitet den Nutzer bei Farbauswahl auf die Detailseite weiter
 function searchColor() {
     if (selectedHex) {
-        window.location.href = `farbe.html?hex=${selectedHex}`;
+        window.location.href = `colors.html?hex=${selectedHex}`;
     }
 }
 
+// Eingabefeld HEX-Code – Leitet den Nutzer bei manueller HEX-Eingabe auf die Detailseite weiter
 function searchHex() {
     let hex = document.getElementById('hex-input').value.replace('#', '');
     if (hex) {
-        window.location.href = `farbe.html?hex=${hex}`;
+        window.location.href = `colors.html?hex=${hex}`;
     }
 }

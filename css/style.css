@@ -43,6 +43,18 @@ body {
     display: block;
 }
 
+.logo-home {
+    width: 80%;
+    margin: 0 auto 80px auto;
+    display: block;
+}
+
+.color-picker {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden; 
+}
+
 .search-container {
     display: flex;
     justify-content: center;
@@ -332,13 +344,35 @@ body.page-home {
 }
 
 .search-label {
+    font-family: Audiowide, sans-serif;
     color: rgb(255, 255, 255);
-    font-size: 1rem;
+    font-size: 1.5rem;
     padding-left: 12px;
 }
 
 #color-label {
     display: none;
+}
+
+/* Loading Screen */
+body.loadingscreen {
+    margin: 0;
+    padding: 0;
+    height: auto;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #000000;
+    overflow: hidden;
+}
+
+/* Passt das Lottie-Element an */
+dotlottie-wc {
+    margin-top: 17%;
+    width: 100%;
+    height: 100%;
+    transform: scale(1.5);
 }
 
 

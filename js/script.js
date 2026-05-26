@@ -105,12 +105,16 @@ if (document.readyState === 'loading') {
         loadData().then(data => {
             console.log(data);
             displayColorData(data);
+            // AI-Text wird nach displayColorData geladen, damit die Keywords/Description nicht überschrieben werden
+            loadAIColorText(data.hex.value.replace('#', ''));
         });
     });
 } else {
     loadData().then(data => {
         console.log(data);
         displayColorData(data);
+        // AI-Text wird nach displayColorData geladen, damit die Keywords/Description nicht überschrieben werden
+        loadAIColorText(data.hex.value.replace('#', ''));
     });
 }
 
@@ -260,7 +264,6 @@ async function loadData(hex) {
     
     const url = `https://www.thecolorapi.com/id?hex=${hex}`;
     try {
-        loadAIColorText(hex);
         const response = await fetch(url);
         return await response.json();
     } catch (error) {
@@ -270,9 +273,11 @@ async function loadData(hex) {
 }
 
 
-// 2. OpenAI-Abruf (PHP Backend)
+// 2. GeminiAI-Abruf (PHP Backend)
 async function loadAIColorText(colorName) {
     const url = 'api/color-text.php';
+    
+    console.log('loadAIColorText aufgerufen mit:', colorName);
 
     try {
         const response = await fetch(url, {
@@ -284,12 +289,42 @@ async function loadAIColorText(colorName) {
         });
 
         const data = await response.json();
+        
+        console.log('Antwort vom Server:', data);
 
         if (!data.ok) {
-            console.error("OpenAI Fehler:", data.error);
+            console.error("GeminiAI Fehler:", data.error);
             return false;
         }
-        console.log(data);
+
+        // Debug: Zeige debug-Informationen
+        if (data.debug) {
+            console.log('DEBUG:', data.debug);
+        }
+
+        // Fügt die Daten in h3 und p ein
+        const h3 = document.querySelector('h3#colorKeywords');
+        const p = document.querySelector('p#colorDescription');
+        
+        console.log('h3 Element:', h3);
+        console.log('p Element:', p);
+        console.log('data.keywords:', data.keywords);
+        console.log('data.text:', data.text);
+
+        if (h3) {
+            h3.textContent = data.keywords;
+            console.log('h3 gesetzt zu:', data.keywords);
+        } else {
+            console.warn('h3#colorKeywords nicht gefunden!');
+        }
+        
+        if (p) {
+            p.textContent = data.text;
+            console.log('p gesetzt zu:', data.text);
+        } else {
+            console.warn('p#colorDescription nicht gefunden!');
+        }
+
         return data;
 
     } catch (error) {

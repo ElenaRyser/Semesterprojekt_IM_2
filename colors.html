@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css">
 </head>
 <body>
     <div class="stars-background"></div>
@@ -21,20 +22,27 @@
             </a>
         </div>
         <div class="search-container">
+        <div class="search-group">
             <div class="search-bar">
-                <input type="text" value="#" readonly>
-                <button class="search-btn">
-                    <img src="img/Lupe_Icon.svg" alt="Lupe Icon">
-                </button>
-            </div>
-
-            <div class="search-bar usage-bar">
-                <div class="color-pill"></div>
-                <button class="search-btn">
+                <input type="text" id="hex-input" placeholder="#">
+                <button class="search-btn" onclick="searchHex()">
                     <img src="img/Lupe_Icon.svg" alt="Lupe Icon">
                 </button>
             </div>
         </div>
+
+        <div class="search-group">
+            <div class="search-bar usage-bar">
+                <div class="color-picker">
+                    <div id="pickr-btn"></div>
+                    <span id="color-label">Klicken, um Farbe zu wählen</span>
+                    </div>
+                    <button class="search-btn" onclick="searchColor()">
+                    <img src="img/Lupe_Icon.svg" alt="Lupe Icon">
+                </button>
+            </div>
+        </div>
+    </div> 
     </header>
 
     <main class="container">
@@ -228,7 +236,8 @@
             </div>
         </section>
     </main>
-
+    
+    <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>

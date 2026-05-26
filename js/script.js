@@ -3,6 +3,8 @@ let selectedHex = null;
 // Warte darauf, dass das DOM und alle Skripte geladen sind
 document.addEventListener('DOMContentLoaded', () => {
     // Color Picker auf der Startseite
+    const pickrBtn = document.getElementById('pickr-btn');
+    if (pickrBtn) {
     const pickr = Pickr.create({
         el: '#pickr-btn',
         theme: 'classic',
@@ -40,7 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
             hexInput.value = '#' + selectedHex;
         }
     });
-});
+ }});
 
 // Feld Farbpicker -> Leitet den Nutzer bei Farbauswahl auf die Detailseite weiter
 function searchColor() {
@@ -62,7 +64,7 @@ function navigateWithLoadingScreen(hex) {
     // 1. Navigiere zum Loadingscreen
     window.location.href = 'loadingscreen.html';
     
-    // 2. Speichere den hex-Wert im sessionStorage für später
+    // 2. Speichere den HEX-Wert im sessionStorage für später
     sessionStorage.setItem('pendingHex', hex);
 }
 
@@ -123,12 +125,12 @@ function displayColorData(data) {
 
     // Farbnamen ändern
     const colorName = document.querySelector('#colorName');
-    colorName.textContent = data.name.value;
+    if (colorName) colorName.textContent = data.name.value;
 
 
     // Farbvorschau ändern
     const colorPreview = document.querySelector('.color-preview');
-    colorPreview.style.backgroundColor = data.hex.value;
+    if (colorPreview) colorPreview.style.backgroundColor = data.hex.value;
 
 
     // Findet alle input-field Spans in den code-card Elementen
@@ -204,56 +206,56 @@ function displayColorData(data) {
 
     // Farbe Aktuell
     const colorHexCurrent = document.querySelector('#colorHexCurrent');
-    colorHexCurrent.textContent = `${data.hex.value}`;
-
+    if (colorHexCurrent) colorHexCurrent.textContent = data.hex.value;
+    
     const colorPreviewCurrent = document.querySelector('#colorPreviewCurrent');
-    colorPreviewCurrent.style.backgroundColor = data.hex.value;
+    if (colorPreviewCurrent) colorPreviewCurrent.style.backgroundColor = data.hex.value;
 
     // Farbe Dunkler
     const colorHexDarker = document.querySelector('#colorHexDarker');
-    colorHexDarker.textContent = `${hslToHex(colorVariations.dunkler)}`;  
+    if (colorHexDarker) colorHexDarker.textContent = hslToHex(colorVariations.dunkler);
 
     const colorPreviewDarker = document.querySelector('#colorPreviewDarker');
-    colorPreviewDarker.style.backgroundColor = hslToHex(colorVariations.dunkler);
+    if (colorPreviewDarker) colorPreviewDarker.style.backgroundColor = hslToHex(colorVariations.dunkler);
 
     // Farbe Heller
     const colorHexBrighter = document.querySelector('#colorHexBrighter');
-    colorHexBrighter.textContent = `${hslToHex(colorVariations.heller)}`;
+    if (colorHexBrighter) colorHexBrighter.textContent = hslToHex(colorVariations.heller);
 
     const colorPreviewBrighter = document.querySelector('#colorPreviewBrighter');
-    colorPreviewBrighter.style.backgroundColor = hslToHex(colorVariations.heller);
+    if (colorPreviewBrighter) colorPreviewBrighter.style.backgroundColor = hslToHex(colorVariations.heller);
 
     // Farbe Entsättigt
     const colorHexDesaturated = document.querySelector('#colorHexDesaturated');
-    colorHexDesaturated.textContent = `${hslToHex(colorVariations.entsaettigt)}`;
-    
+    if (colorHexDesaturated) colorHexDesaturated.textContent = hslToHex(colorVariations.entsaettigt);
+
     const colorPreviewDesaturated = document.querySelector('#colorPreviewDesaturated');
-    colorPreviewDesaturated.style.backgroundColor = hslToHex(colorVariations.entsaettigt);
+    if (colorPreviewDesaturated) colorPreviewDesaturated.style.backgroundColor = hslToHex(colorVariations.entsaettigt);
 
     // Farbe Satter
     const colorHexSaturated = document.querySelector('#colorHexSaturated');
-    colorHexSaturated.textContent = `${hslToHex(colorVariations.satter)}`;
-    
+    if (colorHexSaturated) colorHexSaturated.textContent = hslToHex(colorVariations.satter);
+
     const colorPreviewSaturated = document.querySelector('#colorPreviewSaturated');
-    colorPreviewSaturated.style.backgroundColor = hslToHex(colorVariations.satter);
+    if (colorPreviewSaturated) colorPreviewSaturated.style.backgroundColor = hslToHex(colorVariations.satter);
 
     // Farbe Kontrast
     const colorHexContrast = document.querySelector('#colorHexContrast');
-    colorHexContrast.textContent = `${hslToHex(colorVariations.kontrast)}`;
-    
+    if (colorHexContrast) colorHexContrast.textContent = hslToHex(colorVariations.kontrast);
+
     const colorPreviewContrast = document.querySelector('#colorPreviewContrast');
-    colorPreviewContrast.style.backgroundColor = hslToHex(colorVariations.kontrast);
+    if (colorPreviewContrast) colorPreviewContrast.style.backgroundColor = hslToHex(colorVariations.kontrast);
 }
 
 // Zugriff auf Color RGB API
 async function loadData(hex) {
-    // Falls kein hex übergeben wird, versuche aus der URL zu lesen
+    // Falls kein HEX übergeben wird, versuche aus der URL zu lesen
     if (!hex) {
         const urlParams = new URLSearchParams(window.location.search);
         hex = urlParams.get('hex');
     }
     
-    // Fallback, falls immer noch kein hex vorhanden ist
+    // Fallback, falls immer noch kein HEX vorhanden ist
     if (!hex) {
         hex = '000000';
     }
@@ -299,7 +301,7 @@ async function loadAIColorText(colorName) {
 }
 
 // Loadingscreen-Logik
-// Prüfe, ob ein hex-Wert im sessionStorage vorhanden ist
+// Prüfe, ob ein HEX-Wert im sessionStorage vorhanden ist
 const pendingHex = sessionStorage.getItem('pendingHex');
 
 if (pendingHex) {
@@ -344,5 +346,12 @@ async function copyToClipboard(elementId, button) {
         
     } catch (err) {
         console.error('Fehler beim Kopieren: ', err);
+    }
+}
+
+if (window.innerWidth <= 768) {
+    const grid = document.querySelector('.variants-grid');
+    if (grid) {
+        grid.scrollLeft = 0;
     }
 }

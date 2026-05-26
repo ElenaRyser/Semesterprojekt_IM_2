@@ -444,20 +444,50 @@ dotlottie-wc {
     }
 
     .hero {
-        flex-direction: column;
+        flex-wrap: wrap;
     }
 
     .color-preview {
+        width: 100%;
+        order: 2;
+    }
+
+    .hero-content p {
+        order: 3;
         width: 100%;
     }
 
     .codes-grid {
         grid-template-columns: 1fr;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    .glass-panel {
+        padding: 15px;
+        margin-bottom: 15px;
     }
 
     .variants-grid {
-        grid-template-columns: repeat(2, 1fr);
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        gap: 12px;
+        padding: 0 20px 10px 20px;
+        scrollbar-width: none;
+        scroll-snap-type: x mandatory;
     }
+
+    .variants-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .variant-item {
+        min-width: calc(50% - 6px);
+        flex-shrink: 0;
+        scroll-snap-align: center;
+    }
+
 
     .hero-content h1 {
         font-size: 1.6rem;
@@ -473,9 +503,36 @@ dotlottie-wc {
     }
 
     .main-header {
-    padding: 20px 0;
+        padding: 20px 0;
     }
 
+    .swatch {
+        height: 180px;
+    }
+
+    .code-card {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 15px;
+    }
+
+    .card-header {
+        margin-bottom: 0;
+        flex-shrink: 0;
+    }
+
+    .card-header label {
+        min-width: 45px;
+    }
+
+    .input-field {
+        flex: 1;
+        height: 36px;
+        font-size: 0.85rem;
+        padding: 3px 3px 3px 12px;
+        margin-top: 0;  
+    }
 }
 
 /* Kleines Handy (bis 480px) */
@@ -486,7 +543,12 @@ dotlottie-wc {
     }
 
     .variants-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: unset;
+    }
+
+    .variant-item {
+        min-width: calc(100% - 40px);
+        flex-shrink: 0;
     }
 
     .hero-content h1 {
@@ -495,5 +557,13 @@ dotlottie-wc {
 
     .logo {
         width: 10rem;
+    }
+
+    #color-label {
+        font-size: 0.8rem;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 80%;
     }
 }

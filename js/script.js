@@ -292,37 +292,23 @@ async function loadAIColorText(colorName) {
 
         const data = await response.json();
         
-        console.log('Antwort vom Server:', data);
-
         if (!data.ok) {
             console.error("GeminiAI Fehler:", data.error);
             return false;
         }
 
-        // Debug: Zeige debug-Informationen
-        if (data.debug) {
-            console.log('DEBUG:', data.debug);
-        }
-
         // Fügt die Daten in h3 und p ein
         const h3 = document.querySelector('h3#colorKeywords');
         const p = document.querySelector('p#colorDescription');
-        
-        console.log('h3 Element:', h3);
-        console.log('p Element:', p);
-        console.log('data.keywords:', data.keywords);
-        console.log('data.text:', data.text);
 
         if (h3) {
             h3.textContent = data.keywords;
-            console.log('h3 gesetzt zu:', data.keywords);
         } else {
             console.warn('h3#colorKeywords nicht gefunden!');
         }
         
         if (p) {
             p.textContent = data.text;
-            console.log('p gesetzt zu:', data.text);
         } else {
             console.warn('p#colorDescription nicht gefunden!');
         }
@@ -340,9 +326,7 @@ async function loadAIColorText(colorName) {
 const pendingHex = sessionStorage.getItem('pendingHex');
 
 if (pendingHex) {
-    // Starte den Datenfetch im Hintergrund
-    // (Dies ist optional - die colors.html wird die Daten ohnehin fetchen)
-    
+    // Starte den Datenfetch im Hintergrund    
     // Nach 2 Sekunden navigiere zur colors.html
     setTimeout(() => {
         window.location.href = `colors.html?hex=${pendingHex}`;
@@ -354,7 +338,6 @@ if (pendingHex) {
         window.location.href = 'index.html';
     }, 3000);
 }
-
 
 async function copyToClipboard(elementId, button) {
     const textToCopy = document.getElementById(elementId).textContent;

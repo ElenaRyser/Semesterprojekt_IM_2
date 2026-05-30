@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
             opacity: false,
             hue: true,
             interaction: {
-                hex: true,
                 rgb: true,
                 input: true,
                 save: true
@@ -30,8 +29,18 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Schliesst den Farbwähler, wenn der Nutzer auf den Save-Button klickt
+    const saveButton = document.querySelector('.pcr-save');
+    if (saveButton) {
+        saveButton.addEventListener('click', () => {
+            pickr.hide();
+        });
+    }
+
     // Reagiert, wenn der Nutzer eine Farbe im Picker ändert
+    const pickrHelpText = document.querySelector('#color-label');
     pickr.on('change', (color) => {
+        pickrHelpText.style.visibility = 'hidden';
         selectedHex = color.toHEXA().toString().replace('#', '');
         const colorPickerBg = document.querySelector('.color-picker');
         if (colorPickerBg) {

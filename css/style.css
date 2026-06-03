@@ -1,8 +1,15 @@
+
+@font-face {
+    font-family: 'Audiowide';
+    src: url('fonts/audiowide/audiowide-regular.ttf') format('truetype');
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Noto Sans', sans-serif;
+    font-size: 16px;
 }
 
 body {
@@ -47,12 +54,6 @@ body {
     width: 80%;
     margin: 0 auto 80px auto;
     display: block;
-}
-
-.color-picker {
-    position: relative;
-    cursor: pointer;
-    overflow: hidden; 
 }
 
 div.pickr .pcr-button {
@@ -104,11 +105,16 @@ div.pcr-app.visible{
 
 /* Farbbalken im rechten Button */
 .color-picker {
+    display: flex;
+    align-items: center;
     background: transparent;
-    height: 100%;     
-    flex: 1;  
+    height: 100%;
+    flex: 1;
     border-radius: 30px;
     border: 1px solid rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
 }
 
 .color-picker input {
@@ -360,25 +366,27 @@ body.page-home {
 }
 
 .search-label {
-    font-family: Audiowide, sans-serif;
+    font-family: 'Audiowide', sans-serif;
     color: rgb(255, 255, 255);
-    font-size: 1.5rem;
+    font-size: 1rem;
     padding-left: 12px;
 }
 
 #color-label {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
     color: white;
-    font-size: 1.1rem;
+    font-size: 1rem;
     font-weight: 500;
     pointer-events: none;
-    transition: opacity 0.3s;
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     z-index: 10;
     background: none;
+    padding-left: 12px;
 }
 
 /* Loading Screen */
@@ -562,13 +570,5 @@ dotlottie-wc {
 
     .logo {
         width: 10rem;
-    }
-
-    #color-label {
-        font-size: 0.8rem;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        max-width: 80%;
     }
 }

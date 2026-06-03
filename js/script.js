@@ -61,11 +61,19 @@ function searchColor() {
 }
 
 // Eingabefeld HEX-Code –> Leitet den Nutzer bei manueller HEX-Eingabe auf die Detailseite weiter
-function searchHex() {
-    let hex = document.getElementById('hex-input').value.replace('#', '');
-    if (hex) {
-        navigateWithLoadingScreen(hex);
-    }
+const hexInput = document.getElementById('hex-input');
+if (hexInput) {
+    hexInput.addEventListener('input', () => {
+        if (!hexInput.value.startsWith('#')) {
+            hexInput.value = '#' + hexInput.value.replace('#', '');
+        }
+    });
+
+    hexInput.addEventListener('keydown', (e) => {
+        if (hexInput.value === '#' && e.key === 'Backspace') {
+            e.preventDefault();
+        }
+    });
 }
 
 // Hilfsfunktion für Navigation mit Loadingscreen
@@ -117,7 +125,9 @@ if (document.readyState === 'loading') {
             console.log(data);
             displayColorData(data);
             // AI-Text wird nach displayColorData geladen, damit die Keywords/Description nicht überschrieben werden
-            loadAIColorText(data.hex.value.replace('#', ''));
+            if (document.querySelector('#colorKeywords')) {
+                loadAIColorText(data.hex.value.replace('#', ''));
+            }
         });
     });
 } else {
@@ -125,7 +135,9 @@ if (document.readyState === 'loading') {
         console.log(data);
         displayColorData(data);
         // AI-Text wird nach displayColorData geladen, damit die Keywords/Description nicht überschrieben werden
-        loadAIColorText(data.hex.value.replace('#', ''));
+         if (document.querySelector('#colorKeywords')) {
+            loadAIColorText(data.hex.value.replace('#', ''));
+        }
     });
 }
 
@@ -306,21 +318,11 @@ async function loadAIColorText(colorName) {
             return false;
         }
 
-        // Fügt die Daten in h3 und p ein
         const h3 = document.querySelector('h3#colorKeywords');
         const p = document.querySelector('p#colorDescription');
 
-        if (h3) {
-            h3.textContent = data.keywords;
-        } else {
-            console.warn('h3#colorKeywords nicht gefunden!');
-        }
-        
-        if (p) {
-            p.textContent = data.text;
-        } else {
-            console.warn('p#colorDescription nicht gefunden!');
-        }
+        if (h3) h3.textContent = data.keywords;
+        if (p) p.textContent = data.text;
 
         return data;
 

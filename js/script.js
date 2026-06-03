@@ -121,24 +121,34 @@ function hslToHex(hslString) {
 // Ruft loadData auf, wenn die Seite geladen wird
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
-        loadData().then(data => {
-            console.log(data);
-            displayColorData(data);
-            // AI-Text wird nach displayColorData geladen, damit die Keywords/Description nicht überschrieben werden
-            if (document.querySelector('#colorKeywords')) {
-                loadAIColorText(data.hex.value.replace('#', ''));
-            }
-        });
-    });
-} else {
-    loadData().then(data => {
-        console.log(data);
-        displayColorData(data);
-        // AI-Text wird nach displayColorData geladen, damit die Keywords/Description nicht überschrieben werden
-         if (document.querySelector('#colorKeywords')) {
-            loadAIColorText(data.hex.value.replace('#', ''));
+        // Nur ausführen, wenn wir auf colors.html sind
+        if (document.querySelector('#colorName')) {
+            loadData().then(data => {
+                if (data) {
+                    console.log(data);
+                    displayColorData(data);
+                    // AI-Text wird nach displayColorData geladen, damit die Keywords/Description nicht überschrieben werden
+                    if (document.querySelector('#colorKeywords')) {
+                        loadAIColorText(data.hex.value.replace('#', ''));
+                    }
+                }
+            }).catch(err => console.error('Fehler beim Laden der Farbdaten:', err));
         }
     });
+} else {
+    // Nur ausführen, wenn wir auf colors.html sind
+    if (document.querySelector('#colorName')) {
+        loadData().then(data => {
+            if (data) {
+                console.log(data);
+                displayColorData(data);
+                // AI-Text wird nach displayColorData geladen, damit die Keywords/Description nicht überschrieben werden
+                if (document.querySelector('#colorKeywords')) {
+                    loadAIColorText(data.hex.value.replace('#', ''));
+                }
+            }
+        }).catch(err => console.error('Fehler beim Laden der Farbdaten:', err));
+    }
 }
 
 // Funktion um die Farbdaten auf der Seite anzuzeigen
@@ -337,17 +347,26 @@ async function loadAIColorText(colorName) {
 const pendingHex = sessionStorage.getItem('pendingHex');
 
 if (pendingHex) {
-    // Starte den Datenfetch im Hintergrund    
-    // Nach 2 Sekunden navigiere zur colors.html
-    setTimeout(() => {
-        window.location.href = `colors.html?hex=${pendingHex}`;
+    // Nach 3 Sekunden navigiere zur colors.html
+    const navigationTimeout = setTimeout(() => {
         sessionStorage.removeItem('pendingHex'); // Cleanup
+        window.location.href = `colors.html?hex=${pendingHex}`;
     }, 3000);
+    
+    // Cleanup bei Seitenwechsel
+    window.addEventListener('beforeunload', () => {
+        clearTimeout(navigationTimeout);
+    });
 } else if (window.location.pathname.includes('loadingscreen.html')) {
     // Falls kein hex vorhanden, gehe zurück zur Startseite
-    setTimeout(() => {
+    const returnTimeout = setTimeout(() => {
         window.location.href = 'index.html';
     }, 3000);
+    
+    // Cleanup bei Seitenwechsel
+    window.addEventListener('beforeunload', () => {
+        clearTimeout(returnTimeout);
+    });
 }
 
 async function copyToClipboard(elementId, button) {

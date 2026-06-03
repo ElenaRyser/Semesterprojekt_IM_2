@@ -1,15 +1,14 @@
-
-@font-face {
-    font-family: 'Audiowide';
-    src: url('fonts/audiowide/audiowide-regular.ttf') format('truetype');
-}
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Noto Sans', sans-serif;
     font-size: 16px;
+}
+
+@font-face {
+    font-family: 'Audiowide';
+    src: url('../fonts/Audiowide/Audiowide-Regular.ttf') format('truetype');
 }
 
 body {

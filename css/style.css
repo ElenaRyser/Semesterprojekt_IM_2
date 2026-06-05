@@ -1,10 +1,15 @@
+html {
+    font-size: 16px;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Noto Sans', sans-serif;
-    font-size: 16px;
 }
+
+
 
 @font-face {
     font-family: 'Audiowide';
@@ -59,6 +64,14 @@ div.pickr .pcr-button {
     visibility: hidden;
 }
 
+.pcr-app {
+    position: fixed;
+    top: auto;
+    left: 50%;
+    transform: translate(-50%);
+    bottom: auto;
+    margin-top: 140px;
+}
 
 div.pcr-app.visible{
     width: 350px;
@@ -181,7 +194,7 @@ div.pcr-app.visible{
 
 .hero-content h1 { font-size: 3rem; }
 .hero-content h3 { color: #ccc; margin-bottom: 15px; }
-.hero-content p { line-height: 1.6; font-size: 0.9rem; color: #eee; }
+.hero-content p { line-height: 1.6; font-size: 1rem; color: #eee; }
 
 .color-preview {
     flex-shrink: 0;
@@ -246,7 +259,7 @@ div.pcr-app.visible{
     display: flex;
     justify-content: space-between;
     align-items: center; 
-    font-size: 1.1rem; 
+    font-size: 1rem; 
     height: 50px; 
     margin-top: 0; 
 }
@@ -276,7 +289,7 @@ div.pcr-app.visible{
 
 /* Variants */
 .variants h4 { 
-    margin-bottom: 20px; 
+    margin-bottom: 1rem; 
 }
 
 /* Dein originales 6er-Raster bleibt exakt so, wie es ist */
@@ -284,6 +297,7 @@ div.pcr-app.visible{
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     gap: 3%;
+    justify-items: center;
 }
 
 /* 1. Die Farbkachel selbst: Höher und runder gemacht für den neuen Look */
@@ -325,7 +339,7 @@ div.pcr-app.visible{
 }
 
 .variant-code-field span {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     font-weight: 500;
     color: white;
 }
@@ -367,7 +381,7 @@ body.page-home {
 .search-label {
     font-family: 'Audiowide', sans-serif;
     color: rgb(255, 255, 255);
-    font-size: 1rem;
+    font-size: 1.4rem;
     padding-left: 12px;
 }
 
@@ -430,6 +444,10 @@ dotlottie-wc {
 
     .hero-content h1 {
         font-size: 2rem;
+    }
+
+    .search-label {
+    font-size: 1rem;
     }
 }
 
@@ -495,11 +513,9 @@ dotlottie-wc {
     }
 
     .variant-item {
-        min-width: calc(50% - 6px);
-        flex-shrink: 0;
-        scroll-snap-align: center;
+        width: 100%;
+        text-align: center;
     }
-
 
     .hero-content h1 {
         font-size: 1.6rem;
@@ -512,6 +528,7 @@ dotlottie-wc {
 
     .search-label {
         text-align: center;
+        font-size: 1.1rem;
     }
 
     .main-header {
@@ -541,7 +558,7 @@ dotlottie-wc {
     .input-field {
         flex: 1;
         height: 36px;
-        font-size: 0.85rem;
+        font-size: 1rem;
         padding: 3px 3px 3px 12px;
         margin-top: 0;  
     }
@@ -549,6 +566,7 @@ dotlottie-wc {
 
 /* Kleines Handy (bis 480px) */
 @media (max-width: 480px) {
+
     .search-bar {
         height: 50px;
         width: 100%;
@@ -570,4 +588,5 @@ dotlottie-wc {
     .logo {
         width: 10rem;
     }
+
 }

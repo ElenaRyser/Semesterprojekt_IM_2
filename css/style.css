@@ -439,7 +439,22 @@ dotlottie-wc {
     }
 
     .variants-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(6, 1fr);
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        gap: 10px;
+        padding-bottom: 10px;
+        scrollbar-width: none;
+    }
+
+    .variants-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .variant-item {
+        min-width: 130px;
+        flex-shrink: 0;
     }
 
     .hero-content h1 {
@@ -448,6 +463,29 @@ dotlottie-wc {
 
     .search-label {
     font-size: 1rem;
+    }
+
+}
+
+@media (max-width: 900px) {
+    .variants-grid {
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        gap: 12px;
+        padding: 0 10px 10px 10px;
+        scrollbar-width: none;
+        scroll-snap-type: x mandatory;
+    }
+
+    .variants-grid::-webkit-scrollbar {
+        display: none;
+    }
+
+    .variant-item {
+        min-width: 130px;
+        flex-shrink: 0;
+        scroll-snap-align: center;
     }
 }
 
@@ -513,8 +551,9 @@ dotlottie-wc {
     }
 
     .variant-item {
-        width: 100%;
-        text-align: center;
+        min-width: 140px; 
+        flex-shrink: 0;
+        scroll-snap-align: center;
     }
 
     .hero-content h1 {
@@ -536,7 +575,7 @@ dotlottie-wc {
     }
 
     .swatch {
-        height: 180px;
+        height: 120px;
     }
 
     .code-card {
@@ -577,8 +616,9 @@ dotlottie-wc {
     }
 
     .variant-item {
-        min-width: calc(100% - 40px);
+        min-width: 120px;
         flex-shrink: 0;
+        scroll-snap-align: center;
     }
 
     .hero-content h1 {
@@ -587,6 +627,14 @@ dotlottie-wc {
 
     .logo {
         width: 10rem;
+    }
+
+    .swatch {
+        height: 120px; 
+    }
+
+    .input-field span {
+        font-size: 0.8rem;
     }
 
 }

@@ -104,6 +104,18 @@ div.pcr-app.visible{
     transition: background 0.3s ease;
 }
 
+.hex-error {
+    visibility: hidden;
+}
+
+.hex-error.show {
+    font-family: 'Audiowide', sans-serif;
+    color: #ff6b6b;
+    font-size: 1rem;
+    margin-top: 8px;
+    visibility: visible;
+}
+
 /* Textfeld im linken Button */
 .search-bar input {
     background: transparent;

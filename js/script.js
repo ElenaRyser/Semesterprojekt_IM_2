@@ -61,6 +61,37 @@ function searchColor() {
 }
 
 // Eingabefeld HEX-Code –> Leitet den Nutzer bei manueller HEX-Eingabe auf die Detailseite weiter
+function searchHex() {
+    const hexInput = document.getElementById('hex-input');
+    const hexError = document.getElementById('hex-error');
+    
+    if (hexInput && hexInput.value && hexInput.value !== '#') {
+        const hexValue = hexInput.value.replace('#', '');
+        
+        // Prüfe, ob der HEX-Wert gültig ist
+        if (isValidHex(hexValue)) {
+            hexError.textContent = '';
+            hexError.classList.remove('show');
+            navigateWithLoadingScreen(hexValue);
+        } else {
+            // Zeige Fehlermeldung
+            hexError.textContent = 'Ungültiger HEX-Code!';
+            hexError.classList.add('show');
+        }
+    } else {
+        // Zeige Fehlermeldung, wenn das Feld leer ist
+        hexError.textContent = 'Bitte gib einen gültigen HEX-Code ein.';
+        hexError.classList.add('show');
+    }
+}
+
+// Funktion zur Validierung von HEX-Codes
+function isValidHex(hex) {
+    // Prüfung, ob regulärer Ausdruck für gültige HEX-Codes (3 oder 6 Zeichen)
+    const hexRegex = /^[0-9A-Fa-f]{3}$|^[0-9A-Fa-f]{6}$/;
+    return hexRegex.test(hex);
+}
+
 const hexInput = document.getElementById('hex-input');
 if (hexInput) {
     hexInput.addEventListener('input', () => {
@@ -81,10 +112,12 @@ function navigateWithLoadingScreen(hex) {
     // 1. Navigiere zum Loadingscreen
     window.location.href = 'loadingscreen.html';
     
-    // 2. Speichere den HEX-Wert im sessionStorage für später
+    // 2. Speichert den HEX-Wert im sessionStorage für später
     sessionStorage.setItem('pendingHex', hex);
 }
 
+
+// HSL zu HEX Konvertierung für Berechnung von Farbwerten in Farbvarianten
 function hslToHex(hslString) {
     const hslMatch = hslString.match(/hsl\((\d+),\s*(\d+)%,\s*(\d+)%\)/);
     
@@ -125,7 +158,6 @@ if (document.readyState === 'loading') {
         if (document.querySelector('#colorName')) {
             loadData().then(data => {
                 if (data) {
-                    console.log(data);
                     displayColorData(data);
                     // AI-Text wird nach displayColorData geladen, damit die Keywords/Description nicht überschrieben werden
                     if (document.querySelector('#colorKeywords')) {
@@ -305,13 +337,13 @@ async function loadData(hex) {
     }
 }
 
-
 // 2. GeminiAI-Abruf (PHP Backend)
 async function loadAIColorText(colorName) {
     const url = 'api/color-text.php';
     
-    console.log('loadAIColorText aufgerufen mit:', colorName);
-
+    const h3 = document.querySelector('h3#colorKeywords');
+    const p = document.querySelector('p#colorDescription');
+    
     try {
         const response = await fetch(url, {
             method: 'POST',
@@ -325,11 +357,11 @@ async function loadAIColorText(colorName) {
         
         if (!data.ok) {
             console.error("GeminiAI Fehler:", data.error);
+            // Fehlermeldung anzeigen mit Platzhaltertexten
+            if (h3) h3.textContent = "Deine KI-Anfragen übersteigen das Anfrage-Limit";
+            if (p) p.textContent = "Aber ich bin mir sicher, deine Farbe ist einzigartig und wunderschön! Wenn du ein paar Minuten wartest, kannst du es gerne nochmal versuchen, dann kann ich dir sicher wieder einen Text generieren.";
             return false;
         }
-
-        const h3 = document.querySelector('h3#colorKeywords');
-        const p = document.querySelector('p#colorDescription');
 
         if (h3) h3.textContent = data.keywords;
         if (p) p.textContent = data.text;
@@ -338,6 +370,9 @@ async function loadAIColorText(colorName) {
 
     } catch (error) {
         console.error("Fetch Fehler:", error);
+        // Fehlermeldung anzeigen mit Platzhaltertexten
+        if (h3) h3.textContent = "Deine KI-Anfragen übersteigen das Anfrage-Limit";
+        if (p) p.textContent = "Aber ich bin mir sicher, deine Farbe ist einzigartig und wunderschön! Wenn du ein paar Minuten wartest, kannst du es gerne nochmal versuchen, dann kann ich dir sicher wieder einen Text generieren.";
         return false;
     }
 }

@@ -44,9 +44,9 @@ Semesterprojekt_IM_2/
 
 ### Frontend
 
-- **HTML5**: Semantische Markup-Struktur
-- **CSS3**: Modernes Styling mit Animationen und Flexbox/Grid
-- **JavaScript (ES6+)**: Interaktive Funktionalität und DOM-Manipulation
+- **HTML**: Semantische Markup-Struktur
+- **CSS**: Modernes Styling mit Animationen und Flexbox/Grid
+- **JavaScript**: Interaktive Funktionalität und DOM-Manipulation
 - **Pickr Color Picker**: Externe Bibliothek für den Farbwähler
 
 ### Backend
@@ -67,7 +67,7 @@ Semesterprojekt_IM_2/
 - Um die Seite zu hosten, muss die der Ordner `.vscode-example` umbenannt werden zu `.vscode`.
 - Anschliessend muss die Datei `sftp-example.json` umbenannt werden zu `sftp.json`.
 - In `sftp.json` müssen alle Platzhaltertexte ersetzt werden.
-- sftp.json darf nicht auf GITHub geladen werden.
+- sftp.json darf nicht auf GitHub geladen werden.
 
 ---
 
@@ -181,11 +181,11 @@ Die PHP-API dient als Mittler zwischen dem Frontend und der Google Gemini API.
 
 ### API-Konfiguration für Gemini AI
 
-Hier ist es wichtig, dass die PHP-Datei `color-text.php` aufgrund des API-Keys nur auf dem Server gehostet wird, aber nicht auf GITHub geladen wird. Das wird in der .gitignore Datei bereits definiert. Der API-Key darf auf keinen Fall für andere Personen ersichtlich sein.
+Hier ist es wichtig, dass die PHP-Datei `color-text.php` aufgrund des API-Keys nur auf dem Server gehostet wird, aber nicht auf GitHub geladen wird. Das wird in der .gitignore Datei bereits definiert. Der API-Key darf auf keinen Fall für andere Personen ersichtlich sein.
 
 Damit die API-Anfrage an Gemini AI korrekt funktioniert, muss folgendes gemacht werden:
 
-- Datei `[color-text-example.php](api/color-text-example.php)` umbenennen zu `color-text.php`
+- Datei `color-text-example.php` umbenennen zu `color-text.php`
 - Auf https://ai.google.dev/gemini-api/docs/api-key?hl=de einen API-Key erstellen & diesen kopieren
 - in `color-text.php` in Zeile 1 den Platzhalter `"HIER KOMMT DER API KEY"` durch den API-Key ersetzen:
 
@@ -213,25 +213,6 @@ $MODEL = 'gemini-2.5-flash-lite';
 
 ## Verwendung
 
-### Installation & Ausführung
-
-1. **Repository klonen/öffnen**
-
-   ```bash
-   cd Semesterprojekt_IM_2
-   ```
-
-2. **Lokalen Server starten**
-   - PHP-Server: `php -S localhost:8000`
-   - Oder Apache/Nginx konfigurieren
-
-3. **Im Browser öffnen**
-   ```
-   http://localhost:8000/index.html
-   ```
-
-### Benutzerfluss
-
 1. **Startseite (index.html)**
    - Wähle zwischen HEX-Code-Eingabe oder Farbwähler
    - Klicke auf "Suchen"
@@ -241,7 +222,8 @@ $MODEL = 'gemini-2.5-flash-lite';
 
 3. **Ergebnisseite (colors.html)**
    - Betrachte die Farbe und die KI-generierte Beschreibung
-   - Klicke "Zurück" zur Startseite für eine neue Suche
+   - Kopiere mit Klick auf das Kopier-Icon einen der Codes
+   - Klicke auf das Logo, um wieder zur Startseite zu kommen oder gib oben einen neuen Hex-Code ein oder wähle mit dem Farbwähler eine neue Farbe
 
 ---
 
@@ -292,30 +274,6 @@ Umfassende Fehlerbehandlung auf Frontend und Backend:
 - Lazy Loading von Assets
 - Optimierte CSS und JavaScript
 - Effiziente API-Anfragen mit Timeout-Handling
-
----
-
-## Lernziele & Kompetenzen
-
-Dieses Projekt demonstriert:
-
-- HTML5 Semantik und Best Practices
-- Modernes CSS3 mit Animationen
-- JavaScript ES6+ und DOM-Manipulation
-- Asynchrone Programmierung (Fetch API)
-- Backend-Entwicklung mit PHP
-- REST API Integration (Google Gemini)
-- CORS und HTTP-Header Management
-- Responsive Web Design
-- UX/UI Best Practices
-- Projektstrukturierung und Dokumentation
-
----
-
-## Lizenz
-
-Fonts: Open Font License (OFL)  
-Projekt: FHGR Semesterprojekt 2026
 
 ---
 

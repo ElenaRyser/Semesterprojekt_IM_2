@@ -62,15 +62,6 @@ div.pickr .pcr-button {
     visibility: hidden;
 }
 
-.pcr-app {
-    position: fixed;
-    top: auto;
-    left: 50%;
-    transform: translate(-50%);
-    bottom: auto;
-    margin-top: 140px;
-}
-
 div.pcr-app.visible{
     width: 350px;
     padding: 30px;
@@ -433,6 +424,7 @@ dotlottie-wc {
         min-width: 140px;
         flex-shrink: 0; 
     }
+
 }
 
 /* Tablet (bis 1024px) */

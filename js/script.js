@@ -51,6 +51,31 @@ document.addEventListener('DOMContentLoaded', () => {
             hexInput.value = '#' + selectedHex;
         }
     });
+
+    pickr.on('show', () => {
+    setTimeout(() => {
+        const app = document.querySelector('.pcr-app');
+        if (!app) return;
+
+        const btn = document.querySelector('.search-bar.usage-bar');
+        const rect = btn.getBoundingClientRect();
+        const isHome = document.body.classList.contains('page-home');
+
+        let topPos;
+        if (isHome) {
+            const appHeight = app.offsetHeight;
+            topPos = rect.top - appHeight - 10; // oberhalb
+        } else {
+            topPos = rect.bottom + 10; // unterhalb
+        }
+
+        app.style.setProperty('left', (rect.left + rect.width / 2) + 'px', 'important');
+        app.style.setProperty('top', topPos + 'px', 'important');
+        app.style.setProperty('position', 'fixed', 'important');
+        app.style.setProperty('transform', 'translateX(-50%)', 'important');
+        app.style.setProperty('z-index', '9999', 'important');
+    }, 10);
+});
  }});
 
 // Feld Farbpicker -> Leitet den Nutzer bei Farbauswahl auf die Detailseite weiter

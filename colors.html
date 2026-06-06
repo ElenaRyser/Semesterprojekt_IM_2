@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css">
-    <link rel="icon" type="image/svg" href="img/Logo_Hueniverse.svg">
+    <link rel="icon" type="image/svg+xml" href="img/Logo_Hueniverse.svg">
 </head>
 <body>
     <div class="stars-background"></div>
@@ -23,42 +23,42 @@
             </a>
         </div>
         <div class="search-container">
-        <div class="search-group">
-            <div class="search-bar">
-                <input type="text" id="hex-input" placeholder="#">
-                <button class="search-btn" onclick="searchHex()">
-                    <img src="img/Lupe_Icon.svg" alt="Lupe Icon">
-                </button>
+            <div class="search-group">
+                <div class="search-bar">
+                    <input type="text" id="hex-input" placeholder="#">
+                    <button type="button" class="search-btn" onclick="searchHex()" aria-label="HEX suchen">
+                        <img src="img/Lupe_Icon.svg" alt="Lupe Icon">
+                    </button>
+                </div>
+                <p class="hex-error" id="hex-error"></p>
             </div>
-            <p class="hex-error" id="hex-error"></p>
-        </div>
 
-        <div class="search-group">
-            <div class="search-bar usage-bar">
-                <div class="color-picker">
-                    <div id="pickr-btn"></div>
-                    <span id="color-label">Klicken, um Farbe zu wählen</span>
+            <div class="search-group">
+                <div class="search-bar usage-bar">
+                    <div class="color-picker">
+                        <div id="pickr-btn"></div>
+                        <span id="color-label">Klicken, um Farbe zu wählen</span>
                     </div>
-                    <button class="search-btn" onclick="searchColor()">
-                    <img src="img/Lupe_Icon.svg" alt="Lupe Icon">
-                </button>
+                    <button type="button" class="search-btn" onclick="searchColor()" aria-label="Farbe suchen">
+                        <img src="img/Lupe_Icon.svg" alt="Lupe Icon">
+                    </button>
+                </div>
             </div>
-        </div>
-    </div> 
+        </div> 
     </header>
 
     <main class="container">
         <section class="glass-panel hero">
             <div class="hero-content">
                 <h1 id="colorName">Farbe</h1>
-                <h3 id="colorKeywords">Drei Schlagworte</h3>
+                <h2 id="colorKeywords">Drei Schlagworte</h2>
                 <p id="colorDescription">Farbbeschreibung</p>
             </div>
             <div class="color-preview"></div>
         </section>
 
 
-        <section class="codes-grid">
+        <div class="codes-grid">
             <div class="glass-panel code-card">
                 <div class="card-header">
                     <div class="header-icon-circle">
@@ -69,7 +69,7 @@
                 
                 <div class="input-field">
                     <span id="HEX-Value">#</span>
-                    <button class="copy-btn" title="Kopieren" onclick="copyToClipboard('HEX-Value', this)">
+                    <button type="button" class="copy-btn" title="Kopieren" onclick="copyToClipboard('HEX-Value', this)">
                         <img src="img/Copy_Icon.svg" alt="Kopieren">
                     </button>
                 </div>
@@ -85,7 +85,7 @@
                 
                 <div class="input-field">
                     <span id="RGB-Value">R G B</span>
-                    <button class="copy-btn" title="Kopieren" onclick="copyToClipboard('RGB-Value', this)">
+                    <button type="button" class="copy-btn" title="Kopieren" onclick="copyToClipboard('RGB-Value', this)">
                         <img src="img/Copy_Icon.svg" alt="Kopieren">
                     </button>
                 </div>
@@ -101,7 +101,7 @@
                 
                 <div class="input-field">
                     <span id="CMYK-Value">C M Y K</span>
-                    <button class="copy-btn" title="Kopieren" onclick="copyToClipboard('CMYK-Value', this)">
+                    <button type="button" class="copy-btn" title="Kopieren" onclick="copyToClipboard('CMYK-Value', this)">
                         <img src="img/Copy_Icon.svg" alt="Kopieren">
                     </button>
                 </div>
@@ -117,7 +117,7 @@
                 
                 <div class="input-field">
                     <span id="HSL-Value">H S L</span>
-                    <button class="copy-btn" title="Kopieren" onclick="copyToClipboard('HSL-Value', this)">
+                    <button type="button" class="copy-btn" title="Kopieren" onclick="copyToClipboard('HSL-Value', this)">
                         <img src="img/Copy_Icon.svg" alt="Kopieren">
                     </button>
                 </div>
@@ -133,7 +133,7 @@
                 
                 <div class="input-field">
                     <span id="HSV-Value">H S V</span>
-                    <button class="copy-btn" title="Kopieren" onclick="copyToClipboard('HSV-Value', this)">
+                    <button type="button" class="copy-btn" title="Kopieren" onclick="copyToClipboard('HSV-Value', this)">
                         <img src="img/Copy_Icon.svg" alt="Kopieren">
                     </button>
                 </div>
@@ -149,18 +149,18 @@
                 
                 <div class="input-field">
                     <span id="XYZ-Value">X Y Z</span>
-                    <button class="copy-btn" title="Kopieren" onclick="copyToClipboard('XYZ-Value', this)">
+                    <button type="button" class="copy-btn" title="Kopieren" onclick="copyToClipboard('XYZ-Value', this)">
                         <img src="img/Copy_Icon.svg" alt="Kopieren">
                     </button>
                 </div>
             </div>
             
-        </section>
+        </div>
 
 
 
         <section class="glass-panel variants">
-            <h4>Farbvarianten</h4>
+            <h3>Farbvarianten</h3>
             <div class="variants-grid">
                 
                 <div class="variant-item">
@@ -168,8 +168,8 @@
                         <span class="pill-label">Aktuell</span>
                     </div>
                     <div class="input-field variant-code-field">
-                        <span id="colorHexCurrent" >#</span>
-                        <button class="copy-btn" title="Kopieren" onclick="copyToClipboard('colorHexCurrent', this)">
+                        <span id="colorHexCurrent">#</span>
+                        <button type="button" class="copy-btn" title="Kopieren" onclick="copyToClipboard('colorHexCurrent', this)">
                             <img src="img/Copy_Icon.svg" alt="Kopieren">
                         </button>
                     </div>
@@ -181,7 +181,7 @@
                     </div>
                     <div class="input-field variant-code-field">
                         <span id="colorHexDarker">#</span>
-                        <button class="copy-btn" title="Kopieren" onclick="copyToClipboard('colorHexDarker', this)">
+                        <button type="button" class="copy-btn" title="Kopieren" onclick="copyToClipboard('colorHexDarker', this)">
                             <img src="img/Copy_Icon.svg" alt="Kopieren">
                         </button>
                     </div>
@@ -193,7 +193,7 @@
                     </div>
                     <div class="input-field variant-code-field">
                         <span id="colorHexBrighter">#</span>
-                        <button class="copy-btn" title="Kopieren" onclick="copyToClipboard('colorHexBrighter', this)">
+                        <button type="button" class="copy-btn" title="Kopieren" onclick="copyToClipboard('colorHexBrighter', this)">
                             <img src="img/Copy_Icon.svg" alt="Kopieren">
                         </button>
                     </div>
@@ -205,7 +205,7 @@
                     </div>
                     <div class="input-field variant-code-field">
                         <span id="colorHexDesaturated">#</span>
-                        <button class="copy-btn" title="Kopieren" onclick="copyToClipboard('colorHexDesaturated', this)">
+                        <button type="button" class="copy-btn" title="Kopieren" onclick="copyToClipboard('colorHexDesaturated', this)">
                             <img src="img/Copy_Icon.svg" alt="Kopieren">
                         </button>
                     </div>
@@ -217,7 +217,7 @@
                     </div>
                     <div class="input-field variant-code-field">
                         <span id="colorHexSaturated">#</span>
-                        <button class="copy-btn" title="Kopieren" onclick="copyToClipboard('colorHexSaturated', this)">
+                        <button type="button" class="copy-btn" title="Kopieren" onclick="copyToClipboard('colorHexSaturated', this)">
                             <img src="img/Copy_Icon.svg" alt="Kopieren">
                         </button>
                     </div>
@@ -229,7 +229,7 @@
                     </div>
                     <div class="input-field variant-code-field">
                         <span id="colorHexContrast">#</span>
-                        <button class="copy-btn" title="Kopieren" onclick="copyToClipboard('colorHexContrast', this)">
+                        <button type="button" class="copy-btn" title="Kopieren" onclick="copyToClipboard('colorHexContrast', this)">
                             <img src="img/Copy_Icon.svg" alt="Kopieren">
                         </button>
                     </div>

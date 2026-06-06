@@ -152,14 +152,7 @@ div.pcr-app.visible{
     padding: 0 12px;
 }
 
-/* Farbbalken im rechten Button */
-.color-pill {
-    background: #000000;
-    height: 100%;     
-    width: 80%;  
-    border-radius: 30px;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-}
+
 
 /* Button-Kreis für Lupe */
 .search-btn {
@@ -182,10 +175,7 @@ div.pcr-app.visible{
     filter: invert(1); 
 }
 
-/* Farbe im Farbpicker */
-.pink-glow {
-    background: #ff98d8;
-}
+
 
 /* Glassmorphism Panel */
 .glass-panel {
@@ -398,10 +388,6 @@ body.page-home {
 }
 
 #color-label {
-    position: relative;
-    left: auto;
-    top: auto;
-    transform: none;
     color: white;
     font-size: 1rem;
     font-weight: 500;
@@ -410,7 +396,6 @@ body.page-home {
     overflow: hidden;
     text-overflow: ellipsis;
     z-index: 10;
-    background: none;
     padding-left: 12px;
 }
 

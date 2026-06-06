@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Reagiert, wenn der Nutzer eine Farbe im Picker ändert
     const pickrHelpText = document.querySelector('#color-label');
     pickr.on('change', (color) => {
-        pickrHelpText.style.visibility = 'hidden';
+        if (pickrHelpText) pickrHelpText.style.visibility = 'hidden';
         selectedHex = color.toHEXA().toString().replace('#', '');
         const colorPickerBg = document.querySelector('.color-picker');
         if (colorPickerBg) {
@@ -68,20 +68,30 @@ function searchHex() {
     if (hexInput && hexInput.value && hexInput.value !== '#') {
         const hexValue = hexInput.value.replace('#', '');
         
-        // Prüfe, ob der HEX-Wert gültig ist
+        // Prüft, ob der HEX-Wert gültig ist
         if (isValidHex(hexValue)) {
-            hexError.textContent = '';
-            hexError.classList.remove('show');
+            if (hexError) {
+                hexError.textContent = '';
+                hexError.classList.remove('show');
+            }
             navigateWithLoadingScreen(hexValue);
         } else {
             // Zeige Fehlermeldung
-            hexError.textContent = 'Ungültiger HEX-Code!';
-            hexError.classList.add('show');
+            if (hexError) {
+                hexError.textContent = 'Ungültiger HEX-Code!';
+                hexError.classList.add('show');
+            } else {
+                console.warn('Ungültiger HEX-Code');
+            }
         }
     } else {
         // Zeige Fehlermeldung, wenn das Feld leer ist
-        hexError.textContent = 'Bitte gib einen gültigen HEX-Code ein.';
-        hexError.classList.add('show');
+        if (hexError) {
+            hexError.textContent = 'Bitte gib einen gültigen HEX-Code ein.';
+            hexError.classList.add('show');
+        } else {
+            console.warn('Bitte gib einen gültigen HEX-Code ein.');
+        }
     }
 }
 
@@ -95,8 +105,24 @@ function isValidHex(hex) {
 const hexInput = document.getElementById('hex-input');
 if (hexInput) {
     hexInput.addEventListener('input', () => {
-        if (!hexInput.value.startsWith('#')) {
-            hexInput.value = '#' + hexInput.value.replace('#', '');
+        // Normalisiert die Eingabe, nur Hex-Zeichen, gross, max Länge 6 (ohne '#')
+        let val = hexInput.value.replace('#', '').toUpperCase();
+        // Entfernt alle nicht-hex Zeichen
+        val = val.replace(/[^0-9a-fA-F]/g, '');
+        // Limit auf 6 Zeichen
+        if (val.length > 6) val = val.slice(0, 6);
+        hexInput.value = '#' + val;
+        
+        // Zeigt Fehlermeldung an, wenn die Eingabe ungültig ist
+        const hexError = document.getElementById('hex-error');
+        if (hexError) {
+            if (val.length > 0 && !isValidHex(val)) {
+                hexError.textContent = 'HEX-Code muss 3 oder 6 Zeichen lang sein';
+                hexError.classList.add('show');
+            } else {
+                hexError.textContent = '';
+                hexError.classList.remove('show');
+            }
         }
     });
 
@@ -109,23 +135,22 @@ if (hexInput) {
 
 // Hilfsfunktion für Navigation mit Loadingscreen
 function navigateWithLoadingScreen(hex) {
-    // 1. Navigiere zum Loadingscreen
-    window.location.href = 'loadingscreen.html';
-    
-    // 2. Speichert den HEX-Wert im sessionStorage für später
+    // 1. Speichert den HEX-Wert im sessionStorage für später
     sessionStorage.setItem('pendingHex', hex);
+    // 2. Navigiert zum Loadingscreen
+    window.location.href = 'loadingscreen.html';
 }
 
 
 // HSL zu HEX Konvertierung für Berechnung von Farbwerten in Farbvarianten
 function hslToHex(hslString) {
-    const hslMatch = hslString.match(/hsl\((\d+),\s*(\d+)%,\s*(\d+)%\)/);
-    
+    // Unterstützt auch Dezimalzahlen und zusätzliche Leerzeichen
+    const hslMatch = hslString.match(/hsl\(\s*([\d.]+)\s*,\s*([\d.]+)%\s*,\s*([\d.]+)%\s*\)/i);
     if (!hslMatch) return null;
 
-    let h = parseInt(hslMatch[1]);
-    let s = parseInt(hslMatch[2]) / 100; // Hier: Sättigung als 0.0 - 1.0
-    let l = parseInt(hslMatch[3]) / 100; // Hier: Helligkeit als 0.0 - 1.0
+    let h = parseFloat(hslMatch[1]);
+    let s = parseFloat(hslMatch[2]) / 100; // Sättigung als 0.0 - 1.0
+    let l = parseFloat(hslMatch[3]) / 100; // Helligkeit als 0.0 - 1.0
 
     // Die korrekte HSL-Formel für Chroma (c)
     const c = (1 - Math.abs(2 * l - 1)) * s;
@@ -143,7 +168,9 @@ function hslToHex(hslString) {
 
     const toHex = (val) => {
         // Hier: (val + m) bringt in den Bereich 0-1, dann * 255
-        const hex = Math.round((val + m) * 255).toString(16);
+        // Begrenzung zwischen 0 und 1, dann in 2-stellige Hex
+        const v = Math.min(1, Math.max(0, val + m));
+        const hex = Math.round(v * 255).toString(16);
         return hex.length === 1 ? '0' + hex : hex;
     };
 
@@ -168,7 +195,7 @@ if (document.readyState === 'loading') {
         }
     });
 } else {
-    // Nur ausführen, wenn wir auf colors.html sind
+    // Nur ausführen, wenn auf colors.html 
     if (document.querySelector('#colorName')) {
         loadData().then(data => {
             if (data) {
@@ -246,7 +273,7 @@ function displayColorData(data) {
     });
 
     function getContrastColor(h, s, l) {
-    // 1. Fall: Graustufen/Schwarz/Weiß -> Invertierung über Helligkeit
+    // 1. Fall: Graustufen/Schwarz/Weiss -> Invertierung über Helligkeit
         if (s < 10) {
             return l > 50 ? 'hsl(0, 0%, 0%)' : 'hsl(0, 0%, 100%)';
         }
@@ -393,7 +420,7 @@ if (pendingHex) {
         clearTimeout(navigationTimeout);
     });
 } else if (window.location.pathname.includes('loadingscreen.html')) {
-    // Falls kein hex vorhanden, gehe zurück zur Startseite
+    // Falls kein hex vorhanden, zurück zur Startseite
     const returnTimeout = setTimeout(() => {
         window.location.href = 'index.html';
     }, 3000);
@@ -405,12 +432,28 @@ if (pendingHex) {
 }
 
 async function copyToClipboard(elementId, button) {
-    const textToCopy = document.getElementById(elementId).textContent;
-    
+    const el = document.getElementById(elementId);
+    if (!el) {
+        console.warn(`copyToClipboard: Element mit id "${elementId}" nicht gefunden.`);
+        return false;
+    }
+
+    const textToCopy = el.textContent || '';
+
     try {
-        await navigator.clipboard.writeText(textToCopy);
+        if (!navigator.clipboard || !navigator.clipboard.writeText) {
+            // Fallback: versuche execCommand (ältere Browser)
+            const textarea = document.createElement('textarea');
+            textarea.value = textToCopy;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+        } else {
+            await navigator.clipboard.writeText(textToCopy);
+        }
         
-        // Button-Styling: weiß Hintergrund, schwarzes Icon
+        // Button-Styling: weiss Hintergrund, schwarzes Icon
         if (button) {
             button.style.backgroundColor = '#ffffff';
             const icon = button.querySelector('img');

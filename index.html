@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
  <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +7,13 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&amp;display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/classic.min.css">
-    <link rel="icon" type="image/svg" href="img/Logo_Hueniverse.svg">
+    <link rel="icon" type="image/svg+xml" href="img/Logo_Hueniverse.svg">
 </head>
+
 <body class="page-home">
     <div class="stars-background"></div>
 
@@ -21,30 +22,32 @@
             <img src="img/Logo_Hueniverse.svg" alt="Hueniverse Logo">
         </div>
     <div class="search-container">
-    <div class="search-group">
-        <p class="search-label">Gib einen HEX-Code ein</p>
-        <div class="search-bar">
-            <input type="text" id="hex-input" value="#">
-            <button class="search-btn" onclick="searchHex()">
-                <img src="img/Lupe_Icon.svg" alt="Lupe Icon">
-            </button>
+        <div class="search-group">
+            <label for="hex-input" class="search-label">Gib einen HEX-Code ein</label>
+            <div class="search-bar">
+                <input type="text" id="hex-input" value="#">
+                <button type="button" class="search-btn" onclick="searchHex()" aria-label="HEX suchen">
+                    <img src="img/Lupe_Icon.svg" alt="Lupe Icon">
+                </button>
+            </div>
+            <p class="hex-error" id="hex-error"></p>
         </div>
-        <p class="hex-error" id="hex-error"></p>
+
+        <div class="search-group">
+            <p class="search-label">Oder wähle deine Farbe</p>
+            <div class="search-bar usage-bar">
+                <div class="color-picker">
+                    <div id="pickr-btn"></div>
+                    <span id="color-label">Klicken, um Farbe zu wählen</span>
+                </div>
+                <button type="button" class="search-btn" onclick="searchColor()" aria-label="Farbe suchen">
+                    <img src="img/Lupe_Icon.svg" alt="Lupe Icon">
+                </button>
+            </div>
+        </div>
     </div>
 
-    <div class="search-group">
-        <p class="search-label">Oder wähle deine Farbe</p>
-        <div class="search-bar usage-bar">
-            <div class="color-picker">
-                <div id="pickr-btn" ></div>
-                <span id="color-label">Klicken, um Farbe zu wählen</span>
-            </div>
-            <button class="search-btn" onclick="searchColor()">
-                <img src="img/Lupe_Icon.svg" alt="Lupe Icon">
-            </button>
-             </div>
-         </div>
-    </div> 
+    </header>
 
     <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
     <script src="js/script.js"></script>   

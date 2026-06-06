@@ -52,6 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Positioniert den Pickr über oder unter dem Button, abhängig von der Bildschirmposition des Buttons und der Seite
     pickr.on('show', () => {
     setTimeout(() => {
         const app = document.querySelector('.pcr-app');
@@ -69,11 +70,11 @@ document.addEventListener('DOMContentLoaded', () => {
             topPos = rect.bottom + 10; // unterhalb
         }
 
-        app.style.setProperty('left', (rect.left + rect.width / 2) + 'px', 'important');
-        app.style.setProperty('top', topPos + 'px', 'important');
-        app.style.setProperty('position', 'fixed', 'important');
-        app.style.setProperty('transform', 'translateX(-50%)', 'important');
-        app.style.setProperty('z-index', '9999', 'important');
+        app.style.setProperty('left', (rect.left + rect.width / 2) + 'px');
+        app.style.setProperty('top', topPos + 'px');
+        app.style.setProperty('position', 'fixed');
+        app.style.setProperty('transform', 'translateX(-50%)');
+        app.style.setProperty('z-index', '9999');
     }, 10);
 });
  }});

@@ -1,0 +1,15 @@
+{
+  "name": "ERSETZEN-HOSTNAME",
+  "host": "ERSETZEN-FTP-HOST",
+  "protocol": "ftp",
+  "port": 21,
+  "username": "ERSETZEN-FTP-BENUTZERNAME",
+  "password": "ERSETZEN-FTP-PASSWORT",
+  "remotePath": "/",
+  "uploadOnSave": true,
+  "ignore": [
+    ".vscode",
+    ".vscode-example",
+    ".git"
+  ]
+} 

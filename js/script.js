@@ -1,6 +1,6 @@
 let selectedHex = null;
 
-// Warte darauf, dass das DOM und alle Skripte geladen sind
+// Wartet darauf, dass das DOM und alle Skripte geladen sind
 document.addEventListener('DOMContentLoaded', () => {
     // Color Picker auf der Startseite
     const pickrBtn = document.getElementById('pickr-btn');
@@ -67,7 +67,7 @@ function searchHex() {
     
     if (hexInput && hexInput.value && hexInput.value !== '#') {
         const hexValue = hexInput.value.replace('#', '');
-        
+
         // Prüft, ob der HEX-Wert gültig ist
         if (isValidHex(hexValue)) {
             if (hexError) {
@@ -76,7 +76,7 @@ function searchHex() {
             }
             navigateWithLoadingScreen(hexValue);
         } else {
-            // Zeige Fehlermeldung
+            // Zeigt Fehlermeldung
             if (hexError) {
                 hexError.textContent = 'Ungültiger HEX-Code!';
                 hexError.classList.add('show');
@@ -85,7 +85,7 @@ function searchHex() {
             }
         }
     } else {
-        // Zeige Fehlermeldung, wenn das Feld leer ist
+        // Zeigt Fehlermeldung, wenn das Feld leer ist
         if (hexError) {
             hexError.textContent = 'Bitte gib einen gültigen HEX-Code ein.';
             hexError.classList.add('show');
@@ -283,12 +283,12 @@ function displayColorData(data) {
         return `hsl(${newH}, ${s}%, ${l}%)`;
     }
 
-    // HSL Wert der Farbe auslesen
+    // HSL Wert der Farbe wird ausgelesen
     const h = data.hsl.h;
     const s = data.hsl.s;
     const l = data.hsl.l;
 
-    // Die neuen Farben berechnen
+    // Die neuen Farben werden berechnet
     const colorVariations = {
         aktuell:      `hsl(${h}, ${s}%, ${l}%)`,
         dunkler:      `hsl(${h}, ${s}%, ${Math.max(0, l - 20)}%)`,
@@ -368,7 +368,7 @@ async function loadData(hex) {
 async function loadAIColorText(colorName) {
     const url = 'api/color-text.php';
     
-    const h3 = document.querySelector('h3#colorKeywords');
+    const h2 = document.querySelector('h2#colorKeywords');
     const p = document.querySelector('p#colorDescription');
     
     try {
@@ -385,12 +385,12 @@ async function loadAIColorText(colorName) {
         if (!data.ok) {
             console.error("GeminiAI Fehler:", data.error);
             // Fehlermeldung anzeigen mit Platzhaltertexten
-            if (h3) h3.textContent = "Deine KI-Anfragen übersteigen das Anfrage-Limit";
+            if (h2) h2.textContent = "Deine KI-Anfragen übersteigen das Anfrage-Limit";
             if (p) p.textContent = "Aber ich bin mir sicher, deine Farbe ist einzigartig und wunderschön! Wenn du ein paar Minuten wartest, kannst du es gerne nochmal versuchen, dann kann ich dir sicher wieder einen Text generieren.";
             return false;
         }
 
-        if (h3) h3.textContent = data.keywords;
+        if (h2) h2.textContent = data.keywords;
         if (p) p.textContent = data.text;
 
         return data;
@@ -398,18 +398,18 @@ async function loadAIColorText(colorName) {
     } catch (error) {
         console.error("Fetch Fehler:", error);
         // Fehlermeldung anzeigen mit Platzhaltertexten
-        if (h3) h3.textContent = "Deine KI-Anfragen übersteigen das Anfrage-Limit";
+        if (h2) h2.textContent = "Deine KI-Anfragen übersteigen das Anfrage-Limit";
         if (p) p.textContent = "Aber ich bin mir sicher, deine Farbe ist einzigartig und wunderschön! Wenn du ein paar Minuten wartest, kannst du es gerne nochmal versuchen, dann kann ich dir sicher wieder einen Text generieren.";
         return false;
     }
 }
 
 // Loadingscreen-Logik
-// Prüfe, ob ein HEX-Wert im sessionStorage vorhanden ist
+// Prüft, ob ein HEX-Wert im sessionStorage vorhanden ist
 const pendingHex = sessionStorage.getItem('pendingHex');
 
 if (pendingHex) {
-    // Nach 3 Sekunden navigiere zur colors.html
+    // Nach 3 Sekunden navigieren zu colors.html
     const navigationTimeout = setTimeout(() => {
         sessionStorage.removeItem('pendingHex'); // Cleanup
         window.location.href = `colors.html?hex=${pendingHex}`;
@@ -420,7 +420,7 @@ if (pendingHex) {
         clearTimeout(navigationTimeout);
     });
 } else if (window.location.pathname.includes('loadingscreen.html')) {
-    // Falls kein hex vorhanden, zurück zur Startseite
+    // Falls kein HEX vorhanden, zurück zur Startseite
     const returnTimeout = setTimeout(() => {
         window.location.href = 'index.html';
     }, 3000);
@@ -442,7 +442,7 @@ async function copyToClipboard(elementId, button) {
 
     try {
         if (!navigator.clipboard || !navigator.clipboard.writeText) {
-            // Fallback: versuche execCommand (ältere Browser)
+            // Fallback: versucht execCommand (ältere Browser)
             const textarea = document.createElement('textarea');
             textarea.value = textToCopy;
             document.body.appendChild(textarea);
@@ -453,7 +453,7 @@ async function copyToClipboard(elementId, button) {
             await navigator.clipboard.writeText(textToCopy);
         }
         
-        // Button-Styling: weiss Hintergrund, schwarzes Icon
+        // Button-Styling: weisser Hintergrund, schwarzes Icon
         if (button) {
             button.style.backgroundColor = '#ffffff';
             const icon = button.querySelector('img');

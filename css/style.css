@@ -9,8 +9,6 @@ html {
     font-family: 'Noto Sans', sans-serif;
 }
 
-
-
 @font-face {
     font-family: 'Audiowide';
     src: url('../fonts/Audiowide/Audiowide-Regular.ttf') format('truetype');
@@ -152,8 +150,6 @@ div.pcr-app.visible{
     padding: 0 12px;
 }
 
-
-
 /* Button-Kreis für Lupe */
 .search-btn {
     background-color: black;
@@ -174,8 +170,6 @@ div.pcr-app.visible{
     height: 2.2rem;
     filter: invert(1); 
 }
-
-
 
 /* Glassmorphism Panel */
 .glass-panel {
@@ -213,7 +207,6 @@ div.pcr-app.visible{
     gap: 3%;
     margin-bottom: 7%;
 }
-
 
 /* Karten-Header */
 .card-header {
@@ -281,12 +274,14 @@ div.pcr-app.visible{
     flex-shrink: 0; 
 }
 
-
-/* WICHTIG: Das Copy-Icon herunterskalieren, sonst bricht es aus dem Kreis aus! */
 .copy-btn img {
     width: 3rem; 
     height: 3rem; 
     filter: invert(1); 
+}
+
+.glass-panel h3{
+    margin-bottom: 1rem;
 }
 
 /* Variants */
@@ -294,7 +289,6 @@ div.pcr-app.visible{
     margin-bottom: 1rem; 
 }
 
-/* Dein originales 6er-Raster bleibt exakt so, wie es ist */
 .variants-grid {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -302,7 +296,7 @@ div.pcr-app.visible{
     justify-items: center;
 }
 
-/* 1. Die Farbkachel selbst: Höher und runder gemacht für den neuen Look */
+/* Die Farbkachel selbst */
 .swatch {
     height: 110px;         
     border-radius: 20px;   
@@ -325,13 +319,12 @@ div.pcr-app.visible{
     display: inline-block;
 }
 
-/* Spezialfall für die "Kontrast"-Kachel (Dunkler Text auf hellem Grün liest sich besser) */
+/* Spezialfall für die "Kontrast"-Kachel (Dunkler Text auf hellem Hintergrund) */
 .swatch.contrast .pill-label {
     background-color: rgba(255, 255, 255, 0.4);
     color: #111;
 }
 
-/* 3. Das Code-Feld unter der Kachel (deine Klasse aus dem HTML) */
 .variant-code-field {
     background: rgba(255, 255, 255, 0.12);
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -357,7 +350,7 @@ div.pcr-app.visible{
     height: 3rem;
 }
 
-/* Farben der Swatches (bleiben wie gehabt) */
+/* Standardfarben der Swatches */
 .current { background-color: #FF98D8; }
 .darker { background-color: #CC7AAD; }
 .lighter { background-color: #FFB2E2; }
@@ -420,6 +413,27 @@ dotlottie-wc {
     transform: scale(1.5);
 }
 
+@media (max-width: 1250px) {
+    .variants-grid {
+        display: flex;
+        flex-direction: row;
+        overflow-x: auto;
+        gap: 15px; 
+        padding-bottom: 10px;
+        scrollbar-width: none; 
+        justify-content: flex-start; 
+    }
+
+    /* Versteckt Scrollbar in Chrome/Safari */
+    .variants-grid::-webkit-scrollbar {
+        display: none; 
+    }
+
+    .variant-item {
+        min-width: 140px;
+        flex-shrink: 0; 
+    }
+}
 
 /* Tablet (bis 1024px) */
 @media (max-width: 1024px) {
@@ -464,6 +478,7 @@ dotlottie-wc {
 
 }
 
+/* Kleineres Tablet (Bis 900px) */
 @media (max-width: 900px) {
     .variants-grid {
         display: flex;
@@ -529,7 +544,7 @@ dotlottie-wc {
     }
 
     .glass-panel {
-        padding: 15px;
+        padding: 15px 25px 15px 20px;
         margin-bottom: 15px;
     }
 

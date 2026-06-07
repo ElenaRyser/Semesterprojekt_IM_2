@@ -19,6 +19,88 @@ _FHGR — 2. Semester, Juni 2026_
 
 ---
 
+## Inhaltsverzeichnis
+
+- [Projektübersicht](#projektübersicht)
+  - [Kernfeatures](#kernfeatures)
+- [Dokumentation über die Projektarbeit](#dokumentation-über-die-projektarbeit)
+  - [Herausforderungen](#herausforderungen)
+  - [Figma vs. Endprodukt](#figma-vs-endprodukt)
+  - [Zusammenarbeit](#zusammenarbeit)
+  - [User Testing](#user-testing)
+  - [Learnings](#learnings)
+  - [Fazit](#fazit)
+- [Projektstruktur](#projektstruktur)
+- [Technologie-Stack](#technologie-stack)
+  - [Frontend](#frontend)
+  - [Backend](#backend)
+  - [Fonts & Icons](#fonts--icons)
+- [Seite hosten](#seite-hosten)
+- [HTML-Seiten](#html-seiten)
+  - [index.html](#1-indexhtml--startseite)
+  - [colors.html](#2-colorshtml--farbergebnis-seite)
+  - [loadingscreen.html](#3-loadingscreenhtml--ladebildschirm)
+- [CSS Styling](#css-styling-cssstylecss)
+  - [Besondere Features](#besondere-features)
+- [JavaScript Logik](#javascript-logik-jsscriptjs)
+  - [Hauptfunktionalitäten](#hauptfunktionalitäten)
+- [Backend-API](#backend-api-apicolor-textphp)
+  - [Funktionsweise](#funktionsweise)
+  - [API-Konfiguration für Gemini AI](#api-konfiguration-für-gemini-ai)
+- [Assets](#assets)
+- [Verwendung](#verwendung)
+- [Besonderheiten](#besonderheiten)
+- [Code-Highlights](#code-highlights)
+- [Autoren](#autoren)
+- [Support & Kontakt](#support--kontakt)
+
+---
+
+## Dokumentation über die Projektarbeit
+
+### Herausforderungen
+
+- `Zusammenarbeit auf GitHub:` Es war anfangs schwierig, die Zusammenarbeit mit GitHub zum Laufen zu kriegen. Wir haben dann aber gemerkt, dass es nur ein Synchronisierungsfehler auf dem Server war und wir lediglich in Visual Studio Code in der Dateiübersicht die Datei manuell nochmals uploaden mussten mit "Upload File". Ab da hat es problemlos funktioniert.
+
+- `Nutzerfreundlichkeit:` Ein wichtiges Ziel unseres Projekts war es, die Benutzererfahrung auf mobilen Geräten möglichst benutzerfreundlich zu gestalten. Deshalb haben wir uns bei den Farbvorschlägen für eine Karussell-Lösung entschieden. So können Nutzerinnen und Nutzer auf kleineren Bildschirmen bequem durch die Vorschläge swipen.
+
+- `Einbindung der API für Textgenerierung:` Die API-Schnittstelle zur Textgenerierung der Farben wollten wir ursprünglich zu OpenAI erstellen, was sich aber leider als unmöglich herausstellte. Der Grund war, dass OpenAI ihr Angebot umgestellt hat und nur noch bezahlte Modelle anbot. Daher wechselten wir dann auf die Schnittstelle zu Gemini AI, die dann problemlos funktionierte (für eine gewisse Anzahl an Anfragen aufs Mal).
+
+- `Lottie-Animation:` Die Einbindung des Ladescreens zwischen der Anfrage an die API auf der Seite index.html und der Ladezeitüberbrückung mit dem Lottie-File war etwas fordernd, da wir das mit asynchroner Ladezeit lösen mussten, damit währenddessen im Hintergrund alle Daten geladen werden.
+
+- `Karussell mit den berechneten Farbwerten:` Eine Herausforderung bestand darin, das Karussell zunächst in Figma korrekt einzurichten, da wir diese Funktion zuvor noch nie verwendet hatten. Anschliessend mussten wir die Lösung mit JavaScript umsetzen. Mithilfe von YouTube-Tutorials und eigener Internetrecherche konnten wir diese Herausforderung erfolgreich meistern.
+
+- `Farbpicker:` Eine weitere Herausforderung war die Umsetzung des Farbpickers. In Figma benötigten wir lediglich ein Bild als Platzhalter. Für die Website wollten wir jedoch eine interaktive Lösung integrieren. Nach einiger Recherche fanden wir heraus, dass sich ein Farbpicker direkt aus dem Internet einbinden lässt, ohne zusätzliche Programme installieren zu müssen.
+
+### Figma vs. Endprodukt
+
+Unsere Webseite sieht nahezu identisch aus, wie in unserem vorgängig designten Figma-UX. Wir haben jedoch ein paar kleine Animationen weggelassen und die Hintergrundfarben der transparenten "Glasflächen" von der Transparenz etwas angepasst.
+
+Während Figma vor allem zur Gestaltung und Visualisierung diente, konnten wir im Endprodukt zusätzliche interaktive Funktionen umsetzen. Ein Beispiel dafür ist der Farbpicker, der in Figma lediglich als statisches Element dargestellt wurde, auf der Website jedoch vollständig interaktiv genutzt werden kann.
+
+Auch das Karussell für die Farbvorschläge mussten wir technisch umsetzen und an verschiedene Bildschirmgrössen anpassen.
+
+### Zusammenarbeit
+
+Unsere Zusammenarbeit im Team verlief sehr gut und effizient. Wir konnten die Aufgaben sinnvoll aufteilen, wobei sich Cátia primär um das CSS und Elena um das JavaScript gekümmert hat. Durch diese ergänzende Arbeitsweise und die parallele Entwicklung an verschiedenen Funktionen kamen wir zügig voran. Mithilfe von GitHub haben wir unsere Änderungen zudem regelmässig zusammengeführt, was es uns ermöglichte, jederzeit effizient zu arbeiten und den Überblick über den Projektstand zu behalten.
+
+### User Testing
+
+Unsere Webseite haben wir zwischenzeitlich immer wieder von Bekannten testen lassen, die nicht in unser Projekt eingeweiht waren. Dabei hat sich herausgestellt, dass eine Eingabevalidierung auf der Startseite sehr praktisch wäre, was wir dann beim HEX-Button, bei dem man manuell den HEX-Code eingeben kann, auch noch integriert haben.
+
+### Learnings
+
+- `Kollaboration auf GitHub:` Das war unser erstes Projekt, bei dem wir über GitHub kollaboriert haben. Es hat sich als sehr praktisch herausgestellt, weil man so immer die Änderungen des anderen Verfolgen kann und immer eine Sicherung des vorherigen Standes hat.
+- `Arbeit mit APIs:` Die Arbeit mit einer API haben wir noch nie so umgesetzt, daher war es sehr spannend, einen Einblick in diese Thematik zu erhalten.
+- `Einsetzen von JavaScript:` Während des Projekts haben wir viel über JavaScript gelernt. Besonders die Umsetzung des Karussells und die Integration des Farbpickers haben uns geholfen, unsere Programmierkenntnisse zu erweitern.
+- `Debugging:` Zudem haben wir gelernt, technische Probleme selbstständig mit Hilfe von Tutorials und Internetrecherchen zu lösen.
+
+### Fazit
+
+Durch die Umsetzung des responsiven Designs und des Karussells konnten wir die Bedienung auf mobilen Geräten deutlich verbessern. Besonders das intuitive Wischen durch die Farbvorschläge und der interaktive Farbpicker tragen massgeblich zu einer angenehmen und benutzerfreundlichen Erfahrung bei. Wir sind sehr stolz auf das Endergebnis; das Projekt hat uns nicht nur fachlich viel beigebracht, sondern auch gezeigt, wie wichtig gute Teamarbeit und selbstständiges Problemlösen in der modernen Webentwicklung sind.
+
+---
+
 ## Projektstruktur
 
 ```
